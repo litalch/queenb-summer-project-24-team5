@@ -4,9 +4,9 @@
 }
 
 .appHeader {
-  background-color: #53474F;
+  background-color: #FAF4EF;
   padding: 5px 30px 5px 30px;
-  color: white;
+  color: #4A69BD;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,7 +22,7 @@
 }
 
 .appLink {
-  color: white;
+  color: #4A69BD;
   text-decoration: none;
   font-size: 1.2em;
 }
@@ -33,13 +33,13 @@
 
 .main {
   padding: 20px;
-  background-color: #FFDCE8;
+  background-color: #FAF4EF;
   height: 100vh;
 }
 
 .footer {
   padding: 10px;
-  background-color: #53474F;
+  background-color: #F0B9B9;
   color: white;
   position: fixed;
   width: 100%;
