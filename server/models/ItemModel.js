@@ -11,15 +11,31 @@ const itemSchema = new Schema({
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        enum: [
+            'Jackets & Coats', 
+            'Dresses', 
+            'Jumpers', 
+            'Tops', 
+            'Jumpsuits', 
+            'ActiveWear', 
+            'Accessories', 
+            'Bags', 
+            'Trousers', 
+            'Jeans', 
+            'Skirts', 
+            'Shoes'
+        ]
     },
     gender: {
         type: String,
-        required: true
+        required: true,
+        enum: ['Women', 'Men']
     },
     condition: {
         type: String,
-        required: true
+        required: true,
+        enum: ['Brand New', 'Like New', 'Used - Excellent', 'Used - Good', 'Used - Fair'] 
     },
     price: {
         type: Number,
