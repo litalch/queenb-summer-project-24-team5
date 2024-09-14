@@ -1,5 +1,7 @@
-const User = require('../models/userModel')
-// we use this to interact with our users collections in our database
+const User = require('../models/userModel') // we use this to interact with our users collections in our database
+const jwt = require('jsonwebtoken') // will be used to assign tokens to user to determine logged-in status
+
+
 
 // login user - only structure for now
 const loginUser = async (req, res) => {
