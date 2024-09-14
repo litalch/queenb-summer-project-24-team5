@@ -18,7 +18,7 @@ const userSchema = new Schema({
 })
 
 
-// static signup method
+// Define a static signup method on the schema
 userSchema.statics.signup = async function(email, password){
 
     // Validation of input
@@ -66,8 +66,8 @@ userSchema.statics.signup = async function(email, password){
 
 
 
-// static login method
- user.Schema.statics.login = async function(email, password){
+// Define a static login method on the schema
+ userSchema.statics.login = async function(email, password){
     
     // makes sure that the inputs are not empty
     if (!email || !password){
