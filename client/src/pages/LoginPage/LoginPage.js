@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-// Almost the same as LoginPage.js, with minor modifications
+
 
 // This function returns a sign up form, displaying: a title "Sign up", 
 // two input fields (email and password, where the password characters are not visible on the screen)
