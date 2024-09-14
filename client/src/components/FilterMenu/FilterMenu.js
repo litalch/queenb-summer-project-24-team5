@@ -1,46 +1,43 @@
-import React, { useState } from 'react';
-import './FilterMenu.css';
+import React, { useState, useEffect } from 'react';
+import { fetchCategories } from '../../api/itemApi'; // Ensure this path is correct
+import './FilterMenu.css'; // Ensure this file exists and is correctly named
 
 const FilterMenu = () => {
+  const [categories, setCategories] = useState([]);
   const [gender, setGender] = useState('');
-  const [category, setCategory] = useState('');
 
-  const handleGenderChange = (event) => {
+
+  useEffect(() => {
+    fetchCategories()
+      .then(response => {
+        setCategories(response.data); // Ensure the response structure matches
+      })
+      .catch(error => console.error('Error fetching categories:', error));
+  }, []);
+
+    const handleGenderChange = (event) => {
     setGender(event.target.value);
   };
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-  };
-
-  const handleApplyFilters = () => {
-    console.log('Filters applied:', { gender, category });
-  };
 
   return (
     <div className="filter-menu">
       <h3>Filter Options</h3>
-      
-      <div className="filter-option">
+      <div>
         <h4>Gender</h4>
-        <select value={gender} onChange={handleGenderChange}>
-          <option value="">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-      </div>
-      <div className="filter-option">
+          <select value={gender} onChange={handleGenderChange}>
+           <option value="">Select Gender</option>
+           <option value="male">Male</option>
+           <option value="female">Female</option>
+         </select>
         <h4>Category</h4>
-        <select value={category} onChange={handleCategoryChange}>
-          <option value="">Select Category</option>
-          <option value="clothing">Clothing</option>
-          <option value="electronics">Electronics</option>
-          {/* Add more categories as needed */}
-        </select>
-        <div>
-        <button className="apply-button">Apply</button>
-        </div>
+        <ul>
+          {categories.map((category, index) => (
+            <li key={index}>{category}</li>
+          ))}
+        </ul>
       </div>
+      <button className="apply-button">Apply Filters</button>
     </div>
   );
 };
