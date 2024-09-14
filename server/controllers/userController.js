@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken') // will be used to assign tokens to user to 
 
 
 // This generates a token with the input id (which, in what follows, will be the same id MongoDB gives the associated element), 
-// a secret string, and a login time limit
+// a secret string, and a time limit for the token (subsequently for continuous login)
 const createToken = (id) => {
     return token = jwt.sign({id}, // payload
         process.env.SECRET, // secret key
-         {expiresIn: '4h'}  // time limit on staying logged-in
+         {expiresIn: '4h'}  // the token expires in 4 hours
         )
 }
 
