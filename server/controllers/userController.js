@@ -21,13 +21,15 @@ const signupUser = async (req, res) => {
     try {
         const user = await User.signup(email, password)
 
-        res.status(200).json({email, user}) // if theres is no error, User.signup returns a user object created in mongoDB
+        // create a token assigned to user
+        const token = createToken(user.id)
+
+        res.status(200).json({email, token}) // if theres is no error, User.signup returns a user object created in mongoDB
     } catch (error) {
         res.status(400).json({error: error.mssg})
-
     }
 
-    // res.json({mssg: 'signup user'}) // this was here when I wanted to test API requests using Postman
+    // res.json({mssg: 'signup user'}) // this was here when I just wanted to test API requests using Postman, before the logic implemented above
 }
 
 // This allows us to export the above functions for use
