@@ -66,5 +66,37 @@ userSchema.statics.signup = async function(email, password){
 
 
 
+// static login method
+ user.Schema.statics.login = async function(email, password){
+    
+    // makes sure that the inputs are not empty
+    if (!email || !password){
+        throw Error('All fields must be filled.') 
+    }
+
+    // 'findOne({email})' checks if the email exists in the database
+    // If it's not in the database, we throw an error 
+    const user = await this.findOne({ email }) 
+    if (!user) { 
+        throw Error('Incorrect email. Please make sure you typed it correctly, or sign-up.')
+    }
+
+    // 'bcrypt.compare' compares the plain-text password with the hashed one from the database; returns 'True' if they match.
+    // If they don't match, we throw an error 
+    const match = await bcrypt.compare(password, user.password)
+    if (!match) {
+        throw Error('Incorrect password.')
+    }
+
+    return user
+ }
+
+
+
+
+
+
+
+
 module.exports = mongoose.model('User', userSchema)
 // now mongoose won't allow us to save users to the database, unless they adhere to the Schema defined above
