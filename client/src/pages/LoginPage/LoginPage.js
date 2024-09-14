@@ -9,7 +9,7 @@ import { useState } from "react"
 // Clicking on this button files a submit event on the form, 
 // which is handled by the function 'handleSubmit' called by onSubmit.
 
-const Signup = () => {
+const Login = () => {
     const [email, setEmail] = useState('') // email state
     const [password, setPassword] = useState('') // password state
 
