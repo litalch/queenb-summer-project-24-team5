@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/HomePage/HomePage';
 import styles from './styles/App.module.css';
 import FirstButton from "./components/common/FirstButton/FirstButton";
+import Login from './pages/LoginPage/LoginPage';
+import Signup from './pages/SignupPage/SignupPage';
 
 function App() {
   return (
@@ -16,12 +18,26 @@ function App() {
             <Link to="/" className={styles.appLink}>Home</Link>
             <Link to="/search" className={styles.appLink}>Search</Link>
             <Link to="/upload" className={styles.appLink}>Upload</Link>
+            
+            <Link to="/login" className={styles.appLink}>Login</Link>
+            <Link to="/signup" className={styles.appLink}>Signup</Link>
+
             <FirstButton className={styles.navButton}>Login/Sign Up</FirstButton>
           </nav>
         </header>
         <main className={styles.main}>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route 
+            path="/" element={<Home />} 
+            />
+            <Route
+            path="/login"
+            element={<Login />}
+            />
+            <Route
+            path="/signup"
+            element={<Signup />}
+            />
           </Routes>
         </main>
         <footer className={styles.footer}>
