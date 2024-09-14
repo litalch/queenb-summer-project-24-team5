@@ -28,6 +28,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/api/rubberDucks', rubberDucksRoutes)
+app.use('api/items/', itemsRoutes)
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
