@@ -1,0 +1,30 @@
+/* src/components/FilterMenu.css */
+.filter-menu {
+  position: absolute; /* Use absolute positioning */
+  top: 128px; /* Adjust this value to position it below the navbar */
+  left: 0; /* Align to the right side */
+  width: 220px; /* Width of the menu */
+  background-color: #f4f4f4; /* Light background color */
+  padding: 20px; /* Padding inside the menu */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow for visual separation on the right side */
+  height: calc(100vh - 80px);/*  Full height minus the navbar height */
+  overflow-y: auto; /* Scroll if content overflows */
+  z-index: 1; /* Ensure it is above other content, but within the flow */
+
+}
+.filter-option {
+  text-align: left;
+  margin: 10px 10px 10px 10px; /* Space between filter options */
+}
+
+.apply-button {
+  width: 40%;
+  height: 20px;
+  margin-top: 80%;
+  background-color: #5a89bc;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+ 
+}
