@@ -1,5 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose') // database - MongoDB
 const bcrypt = require('bcrypt') // will be used to hash passwords (to not save them as is in the database) 
+const validator = require('validator') // will be used to verify that the user input for email,password is valid
 
 const Schema = mongoose.Schema
 
