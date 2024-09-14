@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 
+
 // This function returns a sign up form, displaying: a title "Sign up", 
 // two input fields (email and password, where the password characters are not visible on the screen)
 // and a button that says "Sign up".
@@ -10,6 +11,13 @@ import { useState } from "react"
 const Signup = () => {
     const [email, setEmail] = useState('') // email state
     const [password, setPassword] = useState('') // password state
+
+    // In "return" below, we will have a button that says 'sign up' (ideal use would be after filling in an email and a password in the form).
+    // This 'handleSubmit' function handles the submit event caused by clicking on that button.
+    const handleSubmit = async (e) => { // async because we will want to make a request to the server
+        e.preventDefault() // when we submit a form, the default event is to refresh the page, and we want to prevent that
+        console.log(email, password)
+}
 
     return (
         <form className="signup" onSubmit={handleSubmit}>
@@ -33,3 +41,6 @@ const Signup = () => {
         </form>
     )
 }
+
+
+export default Signup
