@@ -2,6 +2,12 @@ const User = require('../models/userModel') // we use this to interact with our 
 const jwt = require('jsonwebtoken') // will be used to assign tokens to user to determine logged-in status
 
 
+// This generates a token with the input id (which, in what follows, will be the same id MongoDB gives the associated element), 
+// a secret string, and a login time limit
+const createToken = (id) => {
+    return jwt.sign({ {id}, process.env.SECRET, { expiresIn: '4h' } })
+}
+
 
 // login user - only structure for now
 const loginUser = async (req, res) => {
