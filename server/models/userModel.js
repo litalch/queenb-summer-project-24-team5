@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt') // will be used to hash passwords (to not save them as is in the database) 
 
 const Schema = mongoose.Schema
 
@@ -14,6 +15,27 @@ const userSchema = new Schema({
         // doesn't have to be unique - different users can have the same password
     }
 })
+
+
+// static signup method
+userSchema.statics.signup = async (email, password) => {
+
+    const exists = await this.findOne({ email })
+    if (exists) {
+        throw Error('An account with this email address aleady exists. Please sign up with a different email address, or log in.')
+    }
+
+    const salt = await bcrypt.genSalt(10) // creates salt, adding another layer of protection (makes it harder for hackers to do password-matching)
+    const hash = await bcrypt.hash(password, salt) // hashes the password the user created
+
+    const user = await this.create({ email, password:hash })
+
+    return user
+}
+
+
+
+
 
 module.exports = mongoose.model('User', userSchema)
 // now mongoose won't allow us to save users to the database, unless they adhere to the Schema defined above
