@@ -21,14 +21,44 @@ const userSchema = new Schema({
 // static signup method
 userSchema.statics.signup = async function(email, password){
 
-    const exists = await this.findOne({ email })
-    if (exists) {
+    // Validation of input
+
+    // makes sure that the inputs are not empty
+    if (!email || !password){
+        throw Error('All fields must be filled.') 
+    }
+
+    // 'isEmail' from the package 'validator' returns 'True' if the input is a valid email address
+    // We throw an error message if the email is not valid
+    if (!validator.isEmail(email)){ 
+        throw Error('Email is not valid. Please insert a valid email address.') 
+    }
+
+    // 'isStrongPassword' from the package 'validator' returns 'True' if the password is strong enough
+    // We throw an error message if the chosen password is not strong enough (based on criteria chosed by the developers of this function/package)
+    if (!validator.isStrongPassword(password)){ 
+        throw Error('Password not strong enough. Please choose a stronger password.')
+    }
+
+    // 'findOne({email})' checks if the email already exists in the database
+    // If it's already in the database, we throw an error
+    const exists = await this.findOne({ email }) 
+    if (exists) { 
         throw Error('An account with this email address aleady exists. Please sign up with a different email address, or log in.')
     }
 
-    const salt = await bcrypt.genSalt(10) // creates salt, adding another layer of protection (makes it harder for hackers to do password-matching)
-    const hash = await bcrypt.hash(password, salt) // hashes the password the user created
 
+    // First layers of protection - salt & hashing passwords
+
+    // creates salt, adding another layer of protection (makes it harder for hackers to do password-matching)
+    // the larger the number inside genSalt (here it's 10), the greater the protection, but also the runtime
+    const salt = await bcrypt.genSalt(10) 
+
+    // hashes the password the user created (to avoid saving passwords as-is in the database)
+    const hash = await bcrypt.hash(password, salt) 
+
+
+    // Creates a 'user' element, containing the following data: email, hashed password
     const user = await this.create({ email, password:hash })
 
     return user
