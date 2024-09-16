@@ -45,10 +45,11 @@ const getSingleItem = async (req, res) => {
 
 // create a new item
 const createItem = async (req, res) => {
-    const {name, imageUrl, category, gender, condition, price, location, description} = req.body;
+    //const {name, imageUrl, category, gender, condition, price, location, description} = req.body;
+    const {name, category, gender, condition, price, size, image, description} = req.body;
 
     try {
-        const item = await Item.create({name, imageUrl, category, gender, condition, price, location, description});
+        const item = await Item.create({name, category, gender, condition, price, size, image, description});
         res.status(200).json({item});
     } catch (err) {
         res.status(400).json({mssg: 'error creating item', err})
