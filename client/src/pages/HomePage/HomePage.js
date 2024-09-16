@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './Home.module.css';
-import RandomDuck from '../../components/RandomDuck/RandomDuck';
+import womenswear from './Womenswear.png';
+import menswear from './Menswear.png';
 
 
 const Home = () => {
   return (
     <div className={styles.home}>
-      <h1 className={styles.headline}>Women's Categories</h1>
-      <RandomDuck />
-      <h1 className={styles.headline}>Men's Categories</h1>
+      <img src={womenswear} alt="Womenswear" />
+      <img src={menswear} alt="Menswear" />
     </div>
   );
 };
