@@ -11,7 +11,7 @@ body {
 
 .appHeader {
   background-color: #FAF4EF;
-  padding: 5px 30px 5px 30px;
+  padding: 0px 30px 5px 30px;
   color: #4A69BD;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@ body {
 }
 
 .appLogo {
-  height: 100px;
+  width: 200px;
 }
 
 .appNav {
