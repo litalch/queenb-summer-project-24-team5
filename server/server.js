@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 })
 
 // Routes
-app.use('/api/rubberDucks', rubberDucksRoutes)
+//app.use('/api/rubberDucks', rubberDucksRoutes)
 app.use('/api/items', itemsRoutes)
 
 // Connect to MongoDB
