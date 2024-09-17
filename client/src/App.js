@@ -1,9 +1,12 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/HomePage/HomePage';
 import styles from './styles/App.module.css';
 import FirstButton from "./components/common/FirstButton/FirstButton";
 import UploadForm from './components/uploadForm';
+import ItemsGrid from './components/ItemsGrid/ItemsGrid';
+
 
 function App() {
   return (
@@ -15,8 +18,9 @@ function App() {
           </Link>
           <nav className={styles.appNav}>
             <Link to="/" className={styles.appLink}>Home</Link>
-            <Link to="/search" className={styles.appLink}>Search</Link>
             <Link to='/upload' className={styles.appLink}>Upload</Link>
+            <Link to="/WomensCollection" className={styles.appLink}>Womens</Link>
+            <Link to="/MensCollection" className={styles.appLink}>Mens</Link>
             <FirstButton className={styles.navButton}>Login/Sign Up</FirstButton>
           </nav>
         </header>
@@ -24,6 +28,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/upload" element={<UploadForm />} />
+            <Route path="/WomensCollection" element={<ItemsGrid />} />
+            <Route path="/MensCollection" element={<ItemsGrid />} />
           </Routes>
         </main>
         <footer className={styles.footer}>
