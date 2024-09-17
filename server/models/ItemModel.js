@@ -41,7 +41,7 @@ const itemSchema = new Schema({
         type: Number,
         required: true
     },
-    location: {
+    size: {
         type: String,
         required: true
     },

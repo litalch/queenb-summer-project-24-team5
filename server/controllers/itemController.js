@@ -45,11 +45,10 @@ const getSingleItem = async (req, res) => {
 
 // create a new item
 const createItem = async (req, res) => {
-    //const {name, imageUrl, category, gender, condition, price, location, description} = req.body;
-    const {name, category, gender, condition, price, size, image, description} = req.body;
+    const {name, category, gender, condition, price, size, imageUrl, description} = req.body;
 
     try {
-        const item = await Item.create({name, category, gender, condition, price, size, image, description});
+        const item = await Item.create({name, category, gender, condition, price, size, imageUrl, description});
         res.status(200).json({item});
     } catch (err) {
         res.status(400).json({mssg: 'error creating item', err})
@@ -71,10 +70,10 @@ const deleteItem = async (req, res) => {
 // update item
 const updateItem = async (req, res) => {
     const {id} = req.params;
-    const {name, imageUrl, category, gender, condition, price, location, description} = req.body;
+    const {name, category, gender, condition, price, size, imageUrl, description} = req.body;
 
     try {
-        const item = await Item.findByIdAndUpdate(id, {name, imageUrl, category, gender, condition, price, location, description}, {new: true});
+        const item = await Item.findByIdAndUpdate(id, {name, category, gender, condition, price, size, imageUrl, description}, {new: true});
         res.status(200).json({item});
     } catch (err) {
         res.status(400).json({mssg: 'error updating item', err})
