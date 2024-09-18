@@ -10,8 +10,10 @@ const UploadForm = () => {
     const [price, setPrice] = useState('')
     const [size, setSize] = useState('')
     const [image, setImage] = useState(null)
+    const [imageUrl, setImageUrl] = useState('')
     const [description, setDescription] = useState('')
     const [error, setError] = useState(null)
+    const [useUrl, setUseUrl] = useState(false)
 
     
     // categories
@@ -56,8 +58,53 @@ const UploadForm = () => {
         'Details in Description'
     ]
 
-
     const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('category', category);
+        formData.append('gender', gender);
+        formData.append('condition', condition);
+        formData.append('price', price);
+        formData.append('size', size);
+        formData.append('description', description);
+    
+        // Append the image file to the FormData
+        if (useUrl) {
+            // אם המשתמש הזין URL ולא קובץ
+            formData.append('imageUrl', imageUrl);
+        } else if (image) {
+            // אם המשתמש העלה קובץ
+            formData.append('image', image);
+        }
+    
+        const response = await fetch('http://localhost:5000/api/items', {
+            method: 'POST',
+            body: formData
+        });
+    
+        const json = await response.json();
+    
+        if (!response.ok) {
+            setError(json.error);
+        } else {
+            setName('');
+            setCategory('');
+            setGender('');
+            setCondition('');
+            setPrice('');
+            setSize('');
+            setImage(null);
+            setDescription('');
+            setError(null);
+            console.log('new item added');
+        }
+    };
+    
+
+
+  /*  const handleSubmit = async (e) => {
         e.preventDefault()
 
         const item = {name, category, gender, condition, price, size, image, description}
@@ -88,7 +135,7 @@ const UploadForm = () => {
             //need to add here the 'seccessful add' page
         }
     }
-
+*/
 
 
     return(
@@ -176,8 +223,49 @@ const UploadForm = () => {
                     ))}
                 </select>   
 
+                <label>
+                    <input 
+                        type="radio" 
+                        checked={!useUrl} 
+                        onChange={() => setUseUrl(false)} 
+                    /> 
+                    Upload Image
+                </label>
+                <input 
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setImage(e.target.files[0])}
+                    disabled={useUrl}  // ביטול אם בחרו URL
+                />
 
-                {/* Image Field */}
+                {/* תצוגה מקדימה של התמונה אם נבחר קובץ */}
+                {image && !useUrl && (
+                    <div>
+                        <h4>Image Preview:</h4>
+                        <img src={URL.createObjectURL(image)} alt="Image Preview" style={{ width: '200px', height: 'auto' }} />
+                    </div>
+                )}
+
+                <label>
+                    <input 
+                        type="radio" 
+                        checked={useUrl} 
+                        onChange={() => setUseUrl(true)} 
+                    /> 
+                    Use Image URL
+                </label>
+                <input 
+                    type="text"
+                    placeholder="Enter Image URL"
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    value={imageUrl}
+                    disabled={!useUrl}  // ביטול אם בחרו קובץ
+                />
+
+
+
+
+                {/* Image Field 
                 <label>Upload Image:</label>
                 <input 
                     type="file"
@@ -185,14 +273,13 @@ const UploadForm = () => {
                     onChange={(e) => setImage(e.target.files[0])}
                 />
 
-                {/* Preview image if selected */}
+                {/* Preview image if selected 
                 {image && (
                     <div>
                         <h4>Image Preview:</h4>
                         <img src={URL.createObjectURL(image)} alt="Image Preview" style={{ width: '200px', height: 'auto' }} />
                     </div>
-                )}   
-                
+                )} */}
 
                 {/* Description Field */}
                 <label>Description:</label>

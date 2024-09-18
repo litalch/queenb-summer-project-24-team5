@@ -43,9 +43,11 @@ const getSingleItem = async (req, res) => {
     }
 }
 
+/*
 // create a new item
 const createItem = async (req, res) => {
     const {name, category, gender, condition, price, size, imageUrl, description} = req.body;
+    console.log('Received data:', req.body);
     //console.log('Received data:', req.body);
     try {
         const item = await Item.create({name, category, gender, condition, price, size, imageUrl, description});
@@ -54,6 +56,43 @@ const createItem = async (req, res) => {
         res.status(400).json({error: error.message})
     }
 }
+
+// create a new item
+const createItem = async (req, res) => {
+    console.log('File:', req.file);  // This should print details about the uploaded file
+
+    const { name, category, gender, condition, price, size, description } = req.body;
+    
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+
+    try {
+        const item = await Item.create({ name, category, gender, condition, price, size, imageUrl, description });
+        res.status(200).json({ item });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+*/
+// create a new item
+const createItem = async (req, res) => {
+    const { name, category, gender, condition, price, size, imageUrl, description } = req.body;
+    //console.log('Image URL:', imageUrl);
+    let finalImageUrl = imageUrl; // אם הוזן URL, נשתמש בו
+
+    if (req.file) {
+        // אם הועלה קובץ, נחליף את ה-URL בנתיב התמונה שהועלתה
+        finalImageUrl = `/uploads/${req.file.filename}`;
+    }
+
+    try {
+        const item = await Item.create({ name, category, gender, condition, price, size, imageUrl: finalImageUrl, description });
+        res.status(200).json({ item });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+
 
 // delete item
 const deleteItem = async (req, res) => {
