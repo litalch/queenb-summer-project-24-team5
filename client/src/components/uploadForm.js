@@ -32,8 +32,8 @@ const UploadForm = () => {
     
     // genders
     const genders = [
-        'Man',
-        'Woman'
+        'Men',
+        'Women'
     ]
 
     // conditions
@@ -62,11 +62,11 @@ const UploadForm = () => {
 
         const item = {name, category, gender, condition, price, size, image, description}
 
-        const response = await fetch('/', {
+        const response = await fetch('http://localhost:5000/api/items', {
             method: 'POST',
             body: JSON.stringify(item),
             headers: {
-                'Content-Type': 'application/jason'
+                'Content-Type': 'application/json'
             }
         })
         const json = await response.json
