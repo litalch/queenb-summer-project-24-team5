@@ -40,7 +40,7 @@ const ItemsGrid = () => {
             <div className="card-container" key={item.id}>
               <div className="card">
                 <img src={item.imageUrl} className="card-img" alt={item.name} />
-                {/*<img src={`http://localhost:5000${item.imageUrl}`} className="card-img" alt={item.name} /> for only file item not url*/} 
+                <img src={`http://localhost:5000${item.imageUrl}`} className="card-img" alt={item.name} /> 
                 <div className="card-body">
                   <h5 className="card-title">{item.name}</h5>
                   <p className="card-text">{item.price}$</p>
