@@ -6,7 +6,7 @@ import styles from './styles/App.module.css';
 import FirstButton from "./components/common/FirstButton/FirstButton";
 import UploadForm from './components/uploadForm';
 import ItemsGrid from './components/ItemsGrid/ItemsGrid';
-
+import SuccessPage from './components/SuccessPage'; 
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/upload" element={<UploadForm />} />
+            <Route path="/success" element={<SuccessPage />} />
             <Route path="/WomensCollection" element={<ItemsGrid />} />
             <Route path="/MensCollection" element={<ItemsGrid />} />
           </Routes>

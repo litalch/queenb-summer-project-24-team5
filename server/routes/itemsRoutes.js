@@ -43,9 +43,9 @@ const storage = multer.diskStorage({
     }
   });
   
-  const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
   
-  router.post('/', upload.single('image'), createItem);
+router.post('/', upload.single('image'), createItem);
 
 //router.post('/', createItem)
 

@@ -1,5 +1,7 @@
 import { useState } from "react"
 import styles from '../styles/uploadForm.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const UploadForm = () => {
    
@@ -58,6 +60,8 @@ const UploadForm = () => {
         'Details in Description'
     ]
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -72,10 +76,10 @@ const UploadForm = () => {
     
         // Append the image file to the FormData
         if (useUrl) {
-            // אם המשתמש הזין URL ולא קובץ
+            // For URL photos 
             formData.append('imageUrl', imageUrl);
         } else if (image) {
-            // אם המשתמש העלה קובץ
+            // For file photo
             formData.append('image', image);
         }
     
@@ -89,16 +93,18 @@ const UploadForm = () => {
         if (!response.ok) {
             setError(json.error);
         } else {
-            setName('');
-            setCategory('');
-            setGender('');
-            setCondition('');
-            setPrice('');
-            setSize('');
-            setImage(null);
-            setDescription('');
-            setError(null);
-            console.log('new item added');
+            setName('')
+            setCategory('')
+            setGender('')
+            setCondition('')
+            setPrice('')
+            setSize('')
+            setImage(null)
+            setDescription('')
+            setError(null)
+            console.log('new item added')
+            console.log('Uploaded item:', json); 
+            navigate('/success', { state: { item: json.item } })
         }
     };
     
