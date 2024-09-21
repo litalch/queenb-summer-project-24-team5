@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { useLogin } from "../../hooks/useLogin"
+
 
 // Almost the same as SignupPage.js, with minor modifications
 
@@ -12,12 +14,13 @@ import { useState } from "react"
 const Login = () => {
     const [email, setEmail] = useState('') // email state
     const [password, setPassword] = useState('') // password state
+    const {login, error, isLoading} = useLogin()
 
     // In "return" below, we will have a button that says 'Log in' (ideal use would be after filling in an email and a password in the form).
     // This 'handleSubmit' function handles the submit event caused by clicking on that button.
     const handleSubmit = async (e) => { // async because we will want to make a request to the server
         e.preventDefault() // when we submit a form, the default event is to refresh the page, and we want to prevent that
-        console.log(email, password)
+        await login(email, password)
 }
 
     return (
@@ -38,7 +41,8 @@ const Login = () => {
                 value={password} // if we change the state from above, we want it to reflect the change in here            
              />
 
-            <button>Log in</button>
+            <button disabled={isLoading}>Log in</button>
+            {error && <div className="error">{error}</div>}
         </form>
     )
 }
