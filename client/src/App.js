@@ -5,8 +5,15 @@ import styles from './styles/App.module.css';
 import FirstButton from "./components/common/FirstButton/FirstButton";
 import Login from './pages/LoginPage/LoginPage';
 import Signup from './pages/SignupPage/SignupPage';
+import {useLogout} from '../hooks/useLogout'
 
 function App() {
+// I think we need a Navbar component instead of the messy thing below 
+  const {logout} = useLogout()
+  const handleClick = () => {
+    logout()
+  }
+
   return (
     <BrowserRouter>
       <div className={styles.app}>
@@ -23,6 +30,9 @@ function App() {
             <Link to="/signup" className={styles.appLink}>Signup</Link>
 
             <FirstButton className={styles.navButton}>Login/Sign Up</FirstButton>
+          <div>
+            <button onClick={handleClick}>Log out</button>
+          </div>
           </nav>
         </header>
         <main className={styles.main}>
