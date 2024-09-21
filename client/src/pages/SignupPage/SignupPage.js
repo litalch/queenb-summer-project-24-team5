@@ -41,7 +41,7 @@ const Signup = () => {
                 value={password} // if we change the state from above, we want it to reflect the change in here            
              />
 
-            <button>Sign up</button>
+            <button disabled={isloading}>Sign up</button> 
             {error && <div className="error">{error}</div>}
         </form>
     )
