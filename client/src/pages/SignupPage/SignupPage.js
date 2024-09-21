@@ -13,7 +13,7 @@ import { useSignup } from "../../hooks/useSignup"
 const Signup = () => {
     const [email, setEmail] = useState('') // email state
     const [password, setPassword] = useState('') // password state
-    const {signup, error, isloading} = useSignup() // invoking signup hook
+    const {signup, error, isLoading} = useSignup() // invoking signup hook
 
     // In "return" below, we will have a button that says 'sign up' (ideal use would be after filling in an email and a password in the form).
     // This 'handleSubmit' function handles the submit event caused by clicking on that button.
@@ -21,7 +21,7 @@ const Signup = () => {
         e.preventDefault() // when we submit a form, the default event is to refresh the page, and we want to prevent that
         
         await signup(email, password)
-}
+    }
 
     return (
         <form className="signup" onSubmit={handleSubmit}>
@@ -41,7 +41,7 @@ const Signup = () => {
                 value={password} // if we change the state from above, we want it to reflect the change in here            
              />
 
-            <button disabled={isloading}>Sign up</button> 
+            <button disabled={isLoading}>Sign up</button> 
             {error && <div className="error">{error}</div>}
         </form>
     )

@@ -3,18 +3,18 @@ import {useAuthContext} from './useAuthContext'
 
 export const useSignup = () => {
     const [error, setError] = useState(null)
-    const [isloading, setIsLoading] = useState(null) // This is going to be True when we start the request (allows to present a visual loading state on the button, for instance)
+    const [isLoading, setIsLoading] = useState(null) // This is going to be True when we start the request (allows to present a visual loading state on the button, for instance)
     const {dispatch} = useAuthContext() // will be used to update auth context
 
     // We create an async function for signing up users
     const signup = async (email,password) => {
-        setIsLoading(True)
+        setIsLoading(true)
         setError(null)
 
         const response = await fetch('/api/user/signup',{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email,password})
+            body: JSON.stringify({ email,password })
         })
         const json = await response.json() // if success - this returns some information with the json web token; if it wasn't a success, this is going to return an error
 
@@ -26,7 +26,7 @@ export const useSignup = () => {
         if (response.ok){ // read as: "if the response is okay"
             
             // The following saves the user to local storage
-            localStorage.setItem('user',JSON.stringify(json))
+            localStorage.setItem('user', JSON.stringify(json))
             // The following updates auth context
             dispatch({type: 'LOGIN', payload: json})
 
@@ -34,5 +34,5 @@ export const useSignup = () => {
         }
     }
 
-    return {signup, isloading, error}
+    return {signup, isLoading, error}
 }
