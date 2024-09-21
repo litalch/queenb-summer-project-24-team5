@@ -1,10 +1,9 @@
 import { useAuthContext } from "./useAuthContext"
 
 export const useLogout = () => {
-
 // we don't actully need to send a request to the backend. 
 // we only need to change the state and delete the token from the local storage
-const logout = () => { 
+const Logout = () => { 
     const {dispatch} = useAuthContext()
 
     // The following removes user from storage
@@ -14,5 +13,5 @@ const logout = () => {
     dispatch({type: 'LOGOUT'})
 }
 
-return {logout}
+return {Logout}
 }

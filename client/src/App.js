@@ -5,13 +5,13 @@ import styles from './styles/App.module.css';
 import FirstButton from "./components/common/FirstButton/FirstButton";
 import Login from './pages/LoginPage/LoginPage';
 import Signup from './pages/SignupPage/SignupPage';
-import {useLogout} from '../hooks/useLogout'
+import {useLogout} from './hooks/useLogout'
 
 function App() {
 // I think we need a Navbar component instead of the messy thing below 
-  const {logout} = useLogout()
+  const {Logout} = useLogout()
   const handleClick = () => {
-    logout()
+    Logout()
   }
 
   return (
