@@ -72,7 +72,7 @@ const createItem = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
-*/
+
 // create a new item
 const createItem = async (req, res) => {
     const { name, category, gender, condition, price, size, imageUrl, description } = req.body;
@@ -92,6 +92,36 @@ const createItem = async (req, res) => {
     }
 };
 
+*/
+
+const createItem = async (req, res) => {
+    const { name, category, gender, condition, price, size, description } = req.body;
+
+    let imageBuffer = null;
+    
+    if (req.file) {
+        // If a file is uploaded, store its buffer
+        imageBuffer = req.file.buffer; // Store the image as binary data
+    } else {
+        return res.status(400).json({ error: "Image file is required" });
+    }
+
+    try {
+        const item = await Item.create({
+            name,
+            category,
+            gender,
+            condition,
+            price,
+            size,
+            image: imageBuffer, // Store the image buffer in MongoDB
+            description
+        });
+        res.status(200).json({ item });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
 
 
 // delete item

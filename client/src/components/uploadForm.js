@@ -12,10 +12,10 @@ const UploadForm = () => {
     const [price, setPrice] = useState('')
     const [size, setSize] = useState('')
     const [image, setImage] = useState(null)
-    const [imageUrl, setImageUrl] = useState('')
+    //const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [error, setError] = useState(null)
-    const [useUrl, setUseUrl] = useState(false)
+    //const [useUrl, setUseUrl] = useState(false)
 
     
     // categories
@@ -75,11 +75,7 @@ const UploadForm = () => {
         formData.append('description', description);
     
         // Append the image file to the FormData
-        if (useUrl) {
-            // For URL photos 
-            formData.append('imageUrl', imageUrl);
-        } else if (image) {
-            // For file photo
+        if (image) {
             formData.append('image', image);
         }
     
@@ -103,7 +99,7 @@ const UploadForm = () => {
             setDescription('')
             setError(null)
             console.log('new item added')
-            console.log('Uploaded item:', json); 
+            //console.log('Uploaded item:', json); 
             navigate('/success', { state: { item: json.item } })
         }
     };
@@ -229,29 +225,24 @@ const UploadForm = () => {
                     ))}
                 </select>   
 
-                <label>
-                    <input 
-                        type="radio" 
-                        checked={!useUrl} 
-                        onChange={() => setUseUrl(false)} 
-                    /> 
-                    Upload Image
-                </label>
+
+                {/* Image Field */}
+                <label> Upload Image: </label>
                 <input 
                     type="file"
                     accept="image/*"
                     onChange={(e) => setImage(e.target.files[0])}
-                    disabled={useUrl}  // ביטול אם בחרו URL
+                    //disabled={useUrl}  // ביטול אם בחרו URL
                 />
 
-                {/* תצוגה מקדימה של התמונה אם נבחר קובץ */}
-                {image && !useUrl && (
+                {/* Image Preview */}
+                {image &&  (
                     <div>
                         <h4>Image Preview:</h4>
                         <img src={URL.createObjectURL(image)} alt="Image Preview" style={{ width: '200px', height: 'auto' }} />
                     </div>
                 )}
-
+                {/*
                 <label>
                     <input 
                         type="radio" 
@@ -266,7 +257,7 @@ const UploadForm = () => {
                     onChange={(e) => setImageUrl(e.target.value)}
                     value={imageUrl}
                     disabled={!useUrl}  // ביטול אם בחרו קובץ
-                />
+                />*/}
 
 
 
