@@ -4,13 +4,9 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/HomePage/HomePage';
 import styles from './styles/App.module.css';
 import FirstButton from "./components/common/FirstButton/FirstButton";
-<<<<<<< HEAD
-import UploadForm from './components/uploadForm';
-import ItemsGrid from './components/ItemsGrid/ItemsGrid';
+import UploadForm from "./components/uploadForm.js";
+import ItemsGrid from "./components/ItemsGrid/ItemsGrid.js";
 
-=======
-import FilterMenu from './components/FilterMenu/FilterMenu';
->>>>>>> try_fetching_categoris
 
 function App() {
   return (
@@ -29,7 +25,6 @@ function App() {
           </nav>
         </header>
         <main className={styles.main}>
-        <FilterMenu/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/upload" element={<UploadForm />} />
