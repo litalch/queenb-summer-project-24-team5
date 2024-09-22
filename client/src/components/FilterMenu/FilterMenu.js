@@ -1,46 +1,79 @@
 import React, { useState } from 'react';
-import './FilterMenu.css';
+import './FilterMenu.css'; // Ensure this file exists
+import FilterSection from './FilterSection';
 
-const FilterMenu = () => {
-  const [gender, setGender] = useState('');
-  const [category, setCategory] = useState('');
+const FilterMenu = ({ onFilterChange }) => {
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedGender, setSelectedGender] = useState([]);
+  const [selectedConditions, setSelectedConditions] = useState([]);
 
-  const handleGenderChange = (event) => {
-    setGender(event.target.value);
+  const categories = [
+    'Jackets & Coats',
+    'Dresses',
+    'Jumpers',
+    'Tops',
+    'Jumpsuits',
+    'ActiveWear',
+    'Accessories',
+    'Bags',
+    'Trousers',
+    'Jeans',
+    'Skirts',
+    'Shoes',
+  ];
+  
+  const genders = ['Women', 'Men']
+  const conditions = ['Brand New', 'Like New', 'Used - Excellent', 'Used - Good', 'Used - Fair'];
+
+  const handleCheckboxChange = (type) => (e) => {
+    const { value, checked } = e.target;
+    const updateSelected = (prev) => 
+      checked ? [...prev, value] : prev.filter((item) => item !== value);
+
+    if (type === 'category') {
+      setSelectedCategories(updateSelected(selectedCategories));
+    } else if (type === 'gender') {
+      setSelectedGender(updateSelected(selectedGender));
+    } else if (type === 'condition') {
+      setSelectedConditions(updateSelected(selectedConditions));
+    }
   };
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-  };
-
-  const handleApplyFilters = () => {
-    console.log('Filters applied:', { gender, category });
+  const handleApply = () => {
+    onFilterChange({
+      categories: selectedCategories,
+      gender: selectedGender,
+      conditions: selectedConditions,
+    });
   };
 
   return (
     <div className="filter-menu">
       <h3>Filter Options</h3>
-      
-      <div className="filter-option">
-        <h4>Gender</h4>
-        <select value={gender} onChange={handleGenderChange}>
-          <option value="">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-      </div>
-      <div className="filter-option">
-        <h4>Category</h4>
-        <select value={category} onChange={handleCategoryChange}>
-          <option value="">Select Category</option>
-          <option value="clothing">Clothing</option>
-          <option value="electronics">Electronics</option>
-          {/* Add more categories as needed */}
-        </select>
-        <div>
-        <button className="apply-button">Apply</button>
-        </div>
-      </div>
+     
+      <FilterSection 
+        title="Gender" 
+        options={genders} 
+        handleCheckboxChange={handleCheckboxChange('gender')} 
+        selectedOptions={selectedGender} 
+      />
+
+      <FilterSection 
+        title="Category" 
+        options={categories} 
+        handleCheckboxChange={handleCheckboxChange('category')} 
+        selectedOptions={selectedCategories} 
+      />
+
+      <FilterSection 
+        title="Condition" 
+        options={conditions} 
+        handleCheckboxChange={handleCheckboxChange('condition')} 
+        selectedOptions={selectedConditions} 
+      />
+      <button className="apply-button" onClick={handleApply}>
+        Apply
+      </button>
     </div>
   );
 };
