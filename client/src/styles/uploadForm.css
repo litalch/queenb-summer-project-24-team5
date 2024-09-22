@@ -5,9 +5,14 @@
     display: flex;
     justify-content: center; /* מרכז אופקית */
     align-items: center; /* מרכז אנכית */
-    /*height: 100vh; /* גובה מלא של הדפדפן */
+    height: 50vh; /* גובה מלא של הדפדפן */
 }
 
+.headlineSuccess {
+  font-size: 5em;
+  margin-bottom: 20px;
+  color: #F0B9B9;
+  }
 
 .headline {
     font-size: 2em;
@@ -19,6 +24,20 @@
 label, input {
     display: block;
   }*/
+
+.creatSuccess {
+    background-color: #FDDCD7 ;
+    display: flex;
+    width: 1000px;
+    height: 500px;
+    justify-content: center; 
+    align-items: center;
+    border: 10px solid #FDDCD7;
+    border-radius: 10%;
+    padding: 5px;
+}
+
+
 .creat {
     background-color: #FDDCD7 ;
     display: grid;
