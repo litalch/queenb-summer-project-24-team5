@@ -71,30 +71,29 @@ const ItemsGrid = () => {
 
   
   return (
-    <div className="container">
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <SortingDropdown onSortChange={handleSortChange} />
-      </div>
-      <div>
-      <FilterMenu onFilterChange={handleFilterChange} />
-      {loading && <div class= {styles.loading}>Loading...</div>}
-      {filteredData.length > 0 ? (
-        <div className="items">
-          
+    <div className={styles.itemsContainer}>
+    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <SortingDropdown onSortChange={handleSortChange} />
+    </div>
+    <div>
+    <FilterMenu onFilterChange={handleFilterChange} />
+    {loading && <div className= {styles.loading}>Loading...</div>}
+    {filteredData.length > 0 ? (
+      <div className={styles.items}>
           {filteredData.map((item) => (
             <div className={styles.cardContainer} key={item.id}>
               <Link to={`/item/${item.id}`} className={styles.card}> 
-                <img src={item.imageUrl} className={styles.cardImg} alt={item.name} />
+                <img src={item.imageUrl} className={styles.cardImg} alt={item.name} key={item.img} />
                 <div className={styles.cardBody}>
-                  <h5 className={styles.cardTitle}>{item.name}</h5>
-                  <p className={styles.cardText}>{item.price}$</p>
+                  <h5 className={styles.cardTitle} key={item.name}>{item.name}</h5>
+                  <p className={styles.cardText} key={item.price}>{item.price}$</p>
                 </div>
               </Link>
             </div>
           ))}
         </div>
       ) : !loading && (
-        <div class= {styles.noItems}>No items available</div>
+        <div className= {styles.noItems}>No items available</div>
       )}
     </div>
     </div>

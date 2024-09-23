@@ -9,11 +9,11 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div className={styles.home}>
-      <Link to= "/women" className={styles.card}> 
-        <img src={womenswear} alt="Womenswear" />
+      <Link to= "/women" className={styles.imgLink}> 
+        <img src={womenswear} alt="Womenswear" className={styles.womensImg} />
       </Link>
-      <Link to="/men" className={styles.card}> 
-        <img src={menswear} alt="Menswear" />
+      <Link to="/men" className={styles.imgLink}> 
+        <img src={menswear} alt="Menswear" className={styles.mensImg} />
       </Link>
     </div>
   );
