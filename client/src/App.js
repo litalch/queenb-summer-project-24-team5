@@ -7,6 +7,7 @@ import UploadForm from './components/uploadForm';
 import ItemsGrid from './components/ItemsGrid/ItemsGrid';
 import SuccessPage from './components/SuccessPage'; 
 import Navbar from './components/Navbar/Navbar';
+import ItemDetails from './components/ItemDetails/ItemDetails';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/women" element={<ItemsGrid />} />
             <Route path="/men" element={<ItemsGrid />} />
+            <Route path="/:id" element={<ItemDetails />} />
           </Routes>
         </main>
         <footer className={styles.footer}>
