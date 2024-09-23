@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './ItemsGrid.module.css';
 import FilterMenu from '../FilterMenu/FilterMenu';  
 import { Link } from 'react-router-dom';
+import SortingDropdown from '../SortingDropdown';
 
 
 const ItemsGrid = () => {
@@ -44,14 +45,37 @@ const ItemsGrid = () => {
       const priceMatch = item.price >= priceRange[0] && item.price <= priceRange[1];
 
   
-      return categoryMatch && genderMatch && conditionMatch && priceMatch;
+      return categoryMatch && genderMatch && conditionMatch && priceMatch && sizeMatch;
     });
   
     setFilteredData(filteredData);
   };
+
+  const handleSortChange = (sortOption) => {
+    console.log("Before sorting:", filteredData); 
+    let sortedData = [...filteredData];
+  
+    if (sortOption === "lowToHigh") {
+      sortedData.sort((a, b) => a.price - b.price); // Low to high price
+    } else if (sortOption === "highToLow") {
+      sortedData.sort((a, b) => b.price - a.price); // High to low price
+    } else if (sortOption === "newToOld") {
+      sortedData.sort((a, b) => new Date(b.timestamps) - new Date(a.timestamps)); // New to old
+    } else if (sortOption === "oldToNew") {
+      sortedData.sort((a, b) => new Date(a.timestamps) - new Date(b.timestamps)); // Old to new
+    }
+    console.log("After sorting:", sortedData);
+    setFilteredData(sortedData); // Set the sorted data
+  };
+  
+
   
   return (
     <div className="container">
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <SortingDropdown onSortChange={handleSortChange} />
+      </div>
+      <div>
       <FilterMenu onFilterChange={handleFilterChange} />
       {loading && <div class= {styles.loading}>Loading...</div>}
       {filteredData.length > 0 ? (
@@ -72,6 +96,7 @@ const ItemsGrid = () => {
       ) : !loading && (
         <div class= {styles.noItems}>No items available</div>
       )}
+    </div>
     </div>
   );
   
