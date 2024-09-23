@@ -2,6 +2,7 @@ import React from 'react';
 import './FilterSection.css';
 import {Slider} from '@mui/material';
 
+
 const PriceRangeSection = ({ title, priceRange, handlePriceChange }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
