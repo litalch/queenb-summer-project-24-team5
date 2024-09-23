@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './ItemsGrid.module.css'; 
+import styles from './ItemsGrid.module.css';
 import FilterMenu from '../FilterMenu/FilterMenu';  
+import { Link } from 'react-router-dom';
+
 
 const ItemsGrid = () => {
   const [data, setData] = useState([]);
@@ -16,7 +18,7 @@ const ItemsGrid = () => {
     const getItems = async () => {
       setLoading(true);
       try {
-        const response = await api.get('/items/women');
+        const response = await api.get('/items');
         const items = response.data.items || response.data;
         setData(Array.isArray(items) ? items : [items]);
         setFilteredData(items);
@@ -50,31 +52,28 @@ const ItemsGrid = () => {
   
   return (
     <div className="container">
-      {loading && <div>Loading...</div>}
+      {loading && <div class= {styles.loading}>Loading...</div>}
       {filteredData.length > 0 ? (
-        <div className="justify-content-center">
+        <div className="items">
           <FilterMenu onFilterChange={handleFilterChange} />
           {filteredData.map((item) => (
-            <div className="card-container" key={item.id}>
-              <div className="card">
-                <img src={item.imageUrl} className="card-img" alt={item.name} />
-                <img src={`http://localhost:5000${item.imageUrl}`} className="card-img" alt={item.name} /> 
-                <div className="card-body">
-                  <h5 className="card-title">{item.name}</h5>
-                  <p className="card-text">{item.price}$</p>
-                  <a href={`/item/${item.id}`} className="btn btn-outline-dark">
-                    View Details
-                  </a>
+            <div className={styles.cardContainer} key={item.id}>
+              <Link to={`/item/${item.id}`} className={styles.card}> 
+                <img src={item.imageUrl} className={styles.cardImg} alt={item.name} />
+                <div className={styles.cardBody}>
+                  <h5 className={styles.cardTitle}>{item.name}</h5>
+                  <p className={styles.cardText}>{item.price}$</p>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>
-      ) : (
-        <div>No items available</div>
+      ) : !loading && (
+        <div class= {styles.noItems}>No items available</div>
       )}
     </div>
   );
+  
 };
 
 export default ItemsGrid;

@@ -45,7 +45,8 @@ const itemSchema = new Schema({
     },
     size: {
         type: String,
-        required: true
+        required: true,
+        enum: ['XS','S', 'M', 'L', 'XL', 'XXL', 'Details in Description']
     },
     description: {
         type: String,
