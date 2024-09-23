@@ -54,7 +54,7 @@ const ItemsGrid = () => {
           <FilterMenu onFilterChange={handleFilterChange} />
           {filteredData.map((item) => (
             <div className={styles.cardContainer} key={item.id}>
-              <Link to={`/item/${item.id}`} className={styles.card}> {/* הוסף כאן את הקישור */}
+              <Link to={`/item/${item.id}`} className={styles.card}> 
                 <img src={item.imageUrl} className={styles.cardImg} alt={item.name} />
                 <div className={styles.cardBody}>
                   <h5 className={styles.cardTitle}>{item.name}</h5>

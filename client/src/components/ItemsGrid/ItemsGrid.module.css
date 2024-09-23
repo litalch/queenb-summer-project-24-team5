@@ -45,3 +45,10 @@
   font-weight: bolder;
 }
 
+.loading, .noItems {
+  text-align: center;
+  color: #4A69BD;
+  font-size: 30px;
+  font-weight: bolder;
+
+}

@@ -20,8 +20,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/upload" element={<UploadForm />} />
             <Route path="/success" element={<SuccessPage />} />
-            <Route path="/WomensCollection" element={<ItemsGrid />} />
-            <Route path="/MensCollection" element={<ItemsGrid />} />
+            <Route path="/women" element={<ItemsGrid />} />
+            <Route path="/men" element={<ItemsGrid />} />
           </Routes>
         </main>
         <footer className={styles.footer}>
