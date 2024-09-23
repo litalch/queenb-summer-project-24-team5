@@ -16,7 +16,7 @@ const ItemsGrid = () => {
     const getItems = async () => {
       setLoading(true);
       try {
-        const response = await api.get('/api/items/women');
+        const response = await api.get('/items/women');
         const items = response.data.items || response.data;
         setData(Array.isArray(items) ? items : [items]);
         setFilteredData(items);
