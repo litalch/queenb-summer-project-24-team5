@@ -3,26 +3,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/HomePage/HomePage';
 import styles from './styles/App.module.css';
-import FirstButton from "./components/common/FirstButton/FirstButton";
 import UploadForm from './components/uploadForm';
 import ItemsGrid from './components/ItemsGrid/ItemsGrid';
 import SuccessPage from './components/SuccessPage'; 
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
     <BrowserRouter>
       <div className={styles.app}>
         <header className={styles.appHeader}>
-          <Link to="/">
-            <img src="/project-logo.png" alt="Logo" className={styles.appLogo} />
-          </Link>
-          <nav className={styles.appNav}>
-            <Link to="/" className={styles.appLink}>Home</Link>
-            <Link to='/upload' className={styles.appLink}>Upload</Link>
-            <Link to="/WomensCollection" className={styles.appLink}>Womens</Link>
-            <Link to="/MensCollection" className={styles.appLink}>Mens</Link>
-            <FirstButton className={styles.navButton}>Login/Sign Up</FirstButton>
-          </nav>
+          <Navbar />
         </header>
         <main className={styles.main}>
           <Routes>
