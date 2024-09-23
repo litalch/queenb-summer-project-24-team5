@@ -52,10 +52,11 @@ const ItemsGrid = () => {
   
   return (
     <div className="container">
+      <FilterMenu onFilterChange={handleFilterChange} />
       {loading && <div class= {styles.loading}>Loading...</div>}
       {filteredData.length > 0 ? (
         <div className="items">
-          <FilterMenu onFilterChange={handleFilterChange} />
+          
           {filteredData.map((item) => (
             <div className={styles.cardContainer} key={item.id}>
               <Link to={`/item/${item.id}`} className={styles.card}> 
