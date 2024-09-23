@@ -9,10 +9,10 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div className={styles.home}>
-      <Link to= "/WomensCollection" className={styles.card}> 
+      <Link to= "/women" className={styles.card}> 
         <img src={womenswear} alt="Womenswear" />
       </Link>
-      <Link to="/MensCollection" className={styles.card}> 
+      <Link to="/men" className={styles.card}> 
         <img src={menswear} alt="Menswear" />
       </Link>
     </div>
