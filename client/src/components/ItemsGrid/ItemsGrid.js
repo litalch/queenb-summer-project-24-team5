@@ -3,6 +3,8 @@ import api from '../../services/api';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './ItemsGrid.module.css';
 import FilterMenu from '../FilterMenu/FilterMenu';  
+import { Link } from 'react-router-dom';
+
 
 const ItemsGrid = () => {
   const [data, setData] = useState([]);
@@ -46,30 +48,28 @@ const ItemsGrid = () => {
   
   return (
     <div className="container">
-      {loading && <div>Loading...</div>}
+      {loading && <div class= {styles.loading}>Loading...</div>}
       {filteredData.length > 0 ? (
         <div className="items">
           <FilterMenu onFilterChange={handleFilterChange} />
           {filteredData.map((item) => (
             <div className={styles.cardContainer} key={item.id}>
-              <div className={styles.card}>
+              <Link to={`/item/${item.id}`} className={styles.card}> {/* הוסף כאן את הקישור */}
                 <img src={item.imageUrl} className={styles.cardImg} alt={item.name} />
                 <div className={styles.cardBody}>
                   <h5 className={styles.cardTitle}>{item.name}</h5>
                   <p className={styles.cardText}>{item.price}$</p>
-                  <a href={`/item/${item.id}`} className="btn btn-outline-dark">
-                    View Details
-                  </a>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>
       ) : !loading && (
-        <div>No items available</div>
+        <div class= {styles.noItems}>No items available</div>
       )}
     </div>
   );
+  
 };
 
 export default ItemsGrid;
