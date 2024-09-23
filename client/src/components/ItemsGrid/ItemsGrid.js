@@ -11,7 +11,7 @@ const ItemsGrid = () => {
     const getItems = async () => {
       setLoading(true);
       try {
-        const response = await api.get('/items/');
+        const response = await api.get('/items/women');
         console.log(response.data); 
 
         const items = response.data.items || response.data;
