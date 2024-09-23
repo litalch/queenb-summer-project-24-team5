@@ -11,7 +11,7 @@ const ItemsGrid = () => {
     const getItems = async () => {
       setLoading(true);
       try {
-        const response = await api.get('/items/women');
+        const response = await api.get('/items/');
         console.log(response.data); 
 
         const items = response.data.items || response.data;
@@ -51,7 +51,7 @@ const ItemsGrid = () => {
             </div>
           ))}
         </div>
-      ) : (
+      ) : !loading && (
         <div>No items available</div>
       )}
     </div>
