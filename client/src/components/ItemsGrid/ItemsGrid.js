@@ -99,13 +99,22 @@ const ItemsGrid = () => {
                     alt={item.name}
                     key={item.img} 
                   />
-                ): (
+                /*): (
                   <img 
                   src={item.imageUrl} 
                   className={styles.cardImg} 
                   alt={item.name} 
                   key={item.img} 
-                  />
+                  />*/
+                ) : (
+                  // If imageUrl exists, display the image from the URL
+                  item.imageUrl && (
+                    <img
+                      src={item.imageUrl}
+                      className="card-img"
+                      alt={item.name}
+                    />
+                  )
                 )}
                   <div className={styles.cardBody}>
                     <h5 className={styles.cardTitle} key={item.name}>{item.name}</h5>
