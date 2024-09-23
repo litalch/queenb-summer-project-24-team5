@@ -66,7 +66,7 @@ const ItemsGrid = () => {
             </div>
           ))}
         </div>
-      ) : (
+      ) : !loading && (
         <div>No items available</div>
       )}
     </div>
