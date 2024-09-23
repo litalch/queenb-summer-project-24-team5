@@ -60,9 +60,9 @@ const ItemsGrid = () => {
     } else if (sortOption === "highToLow") {
       sortedData.sort((a, b) => b.price - a.price); // High to low price
     } else if (sortOption === "newToOld") {
-      sortedData.sort((a, b) => new Date(b.timestamps) - new Date(a.timestamps)); // New to old
+      sortedData.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)); // New to old
     } else if (sortOption === "oldToNew") {
-      sortedData.sort((a, b) => new Date(a.timestamps) - new Date(b.timestamps)); // Old to new
+      sortedData.sort((a, b) => new Date(a.updatedAt) - new Date(b.updatedAt)); // Old to new
     }
     console.log("After sorting:", sortedData);
     setFilteredData(sortedData); // Set the sorted data
