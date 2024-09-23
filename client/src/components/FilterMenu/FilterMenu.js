@@ -6,6 +6,7 @@ const FilterMenu = ({ onFilterChange }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedGender, setSelectedGender] = useState([]);
   const [selectedConditions, setSelectedConditions] = useState([]);
+  const [selectedSizes, setSelectedSizes] = useState([]);
 
   const categories = [
     'Jackets & Coats',
@@ -24,7 +25,14 @@ const FilterMenu = ({ onFilterChange }) => {
   
   const genders = ['Women', 'Men']
   const conditions = ['Brand New', 'Like New', 'Used - Excellent', 'Used - Good', 'Used - Fair'];
-
+  const sizes = [
+    'XS',
+    'S',
+    'M',
+    'L',
+    'XL',
+    'XXL',
+]
   const handleCheckboxChange = (type) => (e) => {
     const { value, checked } = e.target;
     const updateSelected = (prev) => 
@@ -36,6 +44,8 @@ const FilterMenu = ({ onFilterChange }) => {
       setSelectedGender(updateSelected(selectedGender));
     } else if (type === 'condition') {
       setSelectedConditions(updateSelected(selectedConditions));
+    }else if (type === 'sizes') {
+      setSelectedSizes(updateSelected(selectedSizes));
     }
   };
 
@@ -44,6 +54,7 @@ const FilterMenu = ({ onFilterChange }) => {
       categories: selectedCategories,
       gender: selectedGender,
       conditions: selectedConditions,
+      sizes: selectedSizes,
     });
   };
 
@@ -70,6 +81,12 @@ const FilterMenu = ({ onFilterChange }) => {
         options={conditions} 
         handleCheckboxChange={handleCheckboxChange('condition')} 
         selectedOptions={selectedConditions} 
+      />
+      <FilterSection 
+        title="Sizes" 
+        options={sizes} 
+        handleCheckboxChange={handleCheckboxChange('sizes')} 
+        selectedOptions={selectedSizes} 
       />
       <button className="apply-button" onClick={handleApply}>
         Apply
