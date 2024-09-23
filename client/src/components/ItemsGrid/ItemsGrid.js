@@ -16,7 +16,7 @@ const ItemsGrid = () => {
     const getItems = async () => {
       setLoading(true);
       try {
-        const response = await api.get('/api/items/women');
+        const response = await api.get('/items/women');
         const items = response.data.items || response.data;
         setData(Array.isArray(items) ? items : [items]);
         setFilteredData(items);
@@ -31,14 +31,18 @@ const ItemsGrid = () => {
   }, []);
 
   const handleFilterChange = (filters) => {
-    const { categories = [], gender = [], conditions = [] } = filters;
+    const { categories = [], gender = [], conditions = [], priceRange = [0, 500] ,sizes = []} = filters;
   
     const filteredData = data.filter((item) => {
       const categoryMatch = categories.length === 0 || categories.includes(item.category);
       const genderMatch = gender.length === 0 || gender.includes(item.gender);
       const conditionMatch = conditions.length === 0 || conditions.includes(item.condition);
+      const sizeMatch = sizes.length === 0 || sizes.includes(item.size);
+
+      const priceMatch = item.price >= priceRange[0] && item.price <= priceRange[1];
+
   
-      return categoryMatch && genderMatch && conditionMatch;
+      return categoryMatch && genderMatch && conditionMatch && priceMatch;
     });
   
     setFilteredData(filteredData);

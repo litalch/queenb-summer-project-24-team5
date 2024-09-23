@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import './FilterMenu.css'; // Ensure this file exists
+import './FilterMenu.css'; 
 import FilterSection from './FilterSection';
+import PriceRangeSection from './PriceRangeSection';
+
 
 const FilterMenu = ({ onFilterChange }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedGender, setSelectedGender] = useState([]);
   const [selectedConditions, setSelectedConditions] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
+  const [priceRange, setPriceRange] = useState([0, 100]); 
+
 
   const categories = [
     'Jackets & Coats',
@@ -49,12 +53,17 @@ const FilterMenu = ({ onFilterChange }) => {
     }
   };
 
+  const handlePriceChange = (event, newValue) => {
+    setPriceRange(newValue);
+  };
+
   const handleApply = () => {
     onFilterChange({
       categories: selectedCategories,
       gender: selectedGender,
       conditions: selectedConditions,
       sizes: selectedSizes,
+      priceRange,
     });
   };
 
@@ -87,7 +96,13 @@ const FilterMenu = ({ onFilterChange }) => {
         options={sizes} 
         handleCheckboxChange={handleCheckboxChange('sizes')} 
         selectedOptions={selectedSizes} 
+        />
+        <PriceRangeSection
+        title="Price Range"
+        priceRange={priceRange}
+        handlePriceChange={handlePriceChange}
       />
+
       <button className="apply-button" onClick={handleApply}>
         Apply
       </button>
