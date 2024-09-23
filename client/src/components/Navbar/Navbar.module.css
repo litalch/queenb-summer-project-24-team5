@@ -1,6 +1,5 @@
 .appLogo {
     width: 200px;
-    height: auto;
     display: block;
   }
   
@@ -14,6 +13,7 @@
   .menu {
     display: flex;
     gap: 20px;
+    align-items: center;
   }
   
   .appLink {
@@ -21,6 +21,7 @@
     text-decoration: none;
     font-size: 1.2em;
     font-weight: bold;
+    height: fit-content;
   }
   
   .appLink:hover {
