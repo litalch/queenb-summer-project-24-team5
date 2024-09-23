@@ -44,7 +44,7 @@ const ItemsGrid = () => {
       const priceMatch = item.price >= priceRange[0] && item.price <= priceRange[1];
 
   
-      return categoryMatch && genderMatch && conditionMatch && priceMatch;
+      return categoryMatch && genderMatch && conditionMatch && priceMatch && sizeMatch;
     });
   
     setFilteredData(filteredData);
