@@ -53,12 +53,21 @@ const ItemsGrid = () => {
                 {/*<img src={item.imageUrl} className="card-img" alt={item.name} />
                 <img src={`http://localhost:5000${item.imageUrl}`} className="card-img" alt={item.name} /> 
                 */}
-                {item.image && (
+                {item.image ? (
                   <img
                     src={`data:image/jpeg;base64,${arrayBufferToBase64(item.image.data)}`}
                     className="card-img"
                     alt={item.name}
                   />
+                ) : (
+                  // If imageUrl exists, display the image from the URL
+                  item.imageUrl && (
+                    <img
+                      src={item.imageUrl}
+                      className="card-img"
+                      alt={item.name}
+                    />
+                  )
                 )}
                 <div className="card-body">
                   <h5 className="card-title">{item.name}</h5>
