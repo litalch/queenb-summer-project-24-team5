@@ -72,7 +72,7 @@ const ItemsGrid = () => {
   
   return (
     <div className={styles.itemsContainer}>
-    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+    <div className= {styles.sortingDropdown}>
       <SortingDropdown onSortChange={handleSortChange} />
     </div>
     <div>
@@ -82,11 +82,11 @@ const ItemsGrid = () => {
       <div className={styles.items}>
           {filteredData.map((item) => (
             <div className={styles.cardContainer} key={item.id}>
-              <Link to={`/item/${item.id}`} key={item.id}> 
+              <Link to={`/items/${item.id}`} className={styles.cardLink} key={item.id}> 
                 <img src={item.imageUrl} className={styles.cardImg} alt={item.name} key={item.img} />
                 <div className={styles.cardBody}>
                   <h5 className={styles.cardTitle} key={item.name}>{item.name}</h5>
-                  <p className={styles.cardText} key={item.price}>{item.price}$</p>
+                  <p className={styles.cardPrice} key={item.price}>{item.price}$</p>
                 </div>
               </Link>
             </div>
