@@ -82,7 +82,7 @@ const ItemsGrid = () => {
       <div className={styles.items}>
           {filteredData.map((item) => (
             <div className={styles.cardContainer} key={item.id}>
-              <Link to={`/item/${item.id}`} className={styles.card}> 
+              <Link to={`/item/${item.id}`} key={item.id}> 
                 <img src={item.imageUrl} className={styles.cardImg} alt={item.name} key={item.img} />
                 <div className={styles.cardBody}>
                   <h5 className={styles.cardTitle} key={item.name}>{item.name}</h5>
