@@ -1,51 +1,54 @@
-import { useState } from "react"
-import { useSignup } from "../../hooks/useSignup"
-
-
-// Almost the same as LoginPage.js, with minor modifications
-
-// This function returns a sign up form, displaying: a title "Sign up", 
-// two input fields (email and password, where the password characters are not visible on the screen)
-// and a button that says "Sign up".
-// Clicking on this button files a submit event on the form, 
-// which is handled by the function 'handleSubmit' called by onSubmit.
+import { useState } from "react";
+import { useSignup } from "../../hooks/useSignup";
 
 const Signup = () => {
-    const [email, setEmail] = useState('') // email state
-    const [password, setPassword] = useState('') // password state
-    const {signup, error, isLoading} = useSignup() // invoking signup hook
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { signup, error, isLoading } = useSignup();
+    const [formError, setFormError] = useState(null); // State for form validation error
 
-    // In "return" below, we will have a button that says 'sign up' (ideal use would be after filling in an email and a password in the form).
-    // This 'handleSubmit' function handles the submit event caused by clicking on that button.
-    const handleSubmit = async (e) => { // async because we will want to make a request to the server
-        e.preventDefault() // when we submit a form, the default event is to refresh the page, and we want to prevent that
-        
-        await signup(email, password)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setFormError(null); // Reset form error before validation
+        if (!email || !password) {
+            setFormError('Please fill in all fields.'); // Set form error if validation fails
+            return; // Exit the function if validation fails
+        }
+
+        console.log("Signup, inside handlesubmit, before await");
+        await signup(email, password); // Call signup function
+        console.log("Signup, inside handlesubmit, after await");
+
+        // Optional: Reset fields after successful signup
+        setEmail('');
+        setPassword('');
     }
 
     return (
         <form className="signup" onSubmit={handleSubmit}>
-            <h3>Sign up</h3> 
+            <h3>Sign up</h3>
 
             <label>Email:</label>
             <input
                 type="email"
-                onChange={(e) => setEmail(e.target.value)} // when the value of this changes, we want to update the email state from above
-                value={email} // if we change the state from above, we want it to reflect the change in here            
-             />
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+            />
 
             <label>Password:</label>
             <input
-                type="password" // so the input is hidden on the screen (dots or something)
-                onChange={(e) => setPassword(e.target.value)} // when the value of this changes, we want to update the password state from above
-                value={password} // if we change the state from above, we want it to reflect the change in here            
-             />
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+            />
 
-            <button disabled={isLoading}>Sign up</button> 
-            {error && <div className="error">{error}</div>}
+            <button disabled={isLoading}>
+                {isLoading ? 'Signing up...' : 'Sign up'}
+            </button>
+            {formError && <div className="error">{formError}</div>} {/* Display form validation error */}
+            {error && <div className="error">{error}</div>} {/* Display signup error from useSignup */}
         </form>
-    )
+    );
 }
 
-
-export default Signup
+export default Signup;
