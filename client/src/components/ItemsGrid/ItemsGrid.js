@@ -89,20 +89,32 @@ const ItemsGrid = () => {
             <div className={styles.cardContainer} key={item.id}>
               <Link to={`/items/${item.id}`} className={styles.cardLink} key={item.id}> 
                  {item.image ? (
+<<<<<<< HEAD
                   <img
                     src={`data:image/jpeg;base64,${arrayBufferToBase64(item.image.data)}`}
                     className={styles.cardLink}
                     alt={item.name}
                     key={item.id}
+=======
+                  <img 
+                    src={`data:image/jpeg;base64,${arrayBufferToBase64(item.image.data)}`}
+                    className={styles.cardImg} key={item.img}
+                    alt={item.name}
+>>>>>>> main
                   />
                 ) : (
                   // If imageUrl exists, display the image from the URL
                   item.imageUrl && (
                     <img
                       src={item.imageUrl}
+<<<<<<< HEAD
                       className={styles.cardLink}
                       alt={item.name}
                       key={item.id}
+=======
+                      className={styles.cardImg} key={item.img}
+                      alt={item.name}
+>>>>>>> main
                     />
                   )
                 )}
