@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import styles from '../styles/uploadForm.css';
+import styles from './uploadForm.css';
 import { useLocation } from 'react-router-dom';
 
 const SuccessPage = () => {

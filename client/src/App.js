@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/HomePage/HomePage';
 import styles from './styles/App.module.css';
-import UploadForm from './components/uploadForm';
+import UploadForm from './components/uploadForm/uploadForm';
 import ItemsGrid from './components/ItemsGrid/ItemsGrid';
-import SuccessPage from './components/SuccessPage'; 
+import SuccessPage from './components/uploadForm/SuccessPage'; 
 import Navbar from './components/Navbar/Navbar';
 import ItemDetails from './components/ItemDetails/ItemDetails';
 
