@@ -23,12 +23,7 @@ function App() {
     <BrowserRouter>
       <div className={styles.app}>
         <header className={styles.appHeader}>
-          <Link to="/">
-            <img src="/project-logo.png" alt="Logo" className={styles.appLogo} />
-          </Link>
-        </header>
-        <main className={styles.main}>
-          <Navbar />
+        <Navbar />
         </header>
         <main className={styles.main}>
           <Routes>
