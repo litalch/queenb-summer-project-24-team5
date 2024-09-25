@@ -7,9 +7,10 @@ const itemSchema = new Schema({
         type: String,
         required: true
     },
-    imageUrl: {
-        type: String,
-        //required: true
+    image: {
+        //type: String,
+        type: Buffer, // Store the image as binary data (Buffer)
+        required: true
     },
     category: {
         type: String,

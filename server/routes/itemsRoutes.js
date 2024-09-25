@@ -33,6 +33,7 @@ router.get('/:id', getSingleItem)
 // POST a new item
 
 // הגדרת Multer לשמירת קבצים בתיקיית 'uploads'
+/*
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, 'uploads/');
@@ -42,7 +43,8 @@ const storage = multer.diskStorage({
       cb(null, uniqueSuffix + '-' + file.originalname);
     }
   });
-  
+  */
+const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
   
 router.post('/', upload.single('image'), createItem);

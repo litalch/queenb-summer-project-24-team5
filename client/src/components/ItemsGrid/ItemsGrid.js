@@ -33,6 +33,19 @@ const ItemsGrid = () => {
     getItems();
   }, []);
 
+
+    // Helper function to convert binary image to base64
+    const arrayBufferToBase64 = (buffer) => {
+      let binary = '';
+      const bytes = new Uint8Array(buffer);
+      const len = bytes.byteLength;
+      for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      return window.btoa(binary);
+    };
+
+
   const handleFilterChange = (filters) => {
     const { categories = [], gender = [], conditions = [], priceRange = [0, 500] ,sizes = []} = filters;
   
@@ -83,7 +96,23 @@ const ItemsGrid = () => {
           {filteredData.map((item) => (
             <div className={styles.cardContainer} key={item.id}>
               <Link to={`/items/${item.id}`} className={styles.cardLink} key={item.id}> 
-                <img src={item.imageUrl} className={styles.cardImg} alt={item.name} key={item.img} />
+                //<img src={item.imageUrl} className={styles.cardImg} alt={item.name} key={item.img} />
+                 {item.image ? (
+                  <img
+                    src={`data:image/jpeg;base64,${arrayBufferToBase64(item.image.data)}`}
+                    className="card-img"
+                    alt={item.name}
+                  />
+                ) : (
+                  // If imageUrl exists, display the image from the URL
+                  item.imageUrl && (
+                    <img
+                      src={item.imageUrl}
+                      className="card-img"
+                      alt={item.name}
+                    />
+                  )
+                )}
                 <div className={styles.cardBody}>
                   <h5 className={styles.cardTitle} key={item.name}>{item.name}</h5>
                   <p className={styles.cardPrice} key={item.price}>{item.price}$</p>
