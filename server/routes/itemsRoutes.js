@@ -52,7 +52,7 @@ router.post('/', upload.single('image'), createItem);
 //router.post('/', createItem)
 
 // DELETE item
-router.delete('/:id', deleteItem)
+router.delete('/:', deleteItem)
 
 // UPDATE item
 router.patch('/:id', updateItem)

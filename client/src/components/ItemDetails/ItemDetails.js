@@ -5,16 +5,16 @@ import api from '../../services/api';
 import FirstButton from '../common/FirstButton/FirstButton';
 
 function ItemDetails() {
-  const { id } = useParams();
+  const { _id } = useParams();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("Item ID:", id);
+    console.log("Item ID:", _id);
     
     const fetchItem = async () => {
       try {
-        const response = await api.get(`/items/${id}`);
+        const response = await api.get(`/items/${_id}`);
         
         if (response.status === 200) {
           setItem(response.data);
@@ -29,7 +29,7 @@ function ItemDetails() {
       }
     }; 
     fetchItem();
-  }, [id]);
+  }, [_id]);
 
   useEffect(() => {
     console.log("Updated Item:", item);
