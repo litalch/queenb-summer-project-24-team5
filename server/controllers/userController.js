@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken') // will be used to assign tokens to user to 
 
 // This generates a token with the input id (which, in what follows, will be the same id MongoDB gives the associated element), 
 // a secret string, and a time limit for the token (subsequently for continuous login)
-const createToken = (id) => {
-    return token = jwt.sign({id}, // payload
+const createToken = (_id) => {
+    return token = jwt.sign({_id}, // payload
         process.env.SECRET, // secret key
          {expiresIn: '4h'}  // the token expires in 4 hours
         )
@@ -20,7 +20,7 @@ const loginUser = async (req, res) => {
         const user = await User.login(email, password)
 
         // create a token assigned to user
-        const token = createToken(user.id)
+        const token = createToken(user._id)
 
         res.status(200).json({email, token}) // if there is no error, User.login returns a user object
     } catch (error) {
@@ -39,7 +39,7 @@ const signupUser = async (req, res) => {
         const user = await User.signup(email, password)
 
         // create a token assigned to user
-        const token = createToken(user.id)
+        const token = createToken(user._id)
 
         res.status(200).json({email, token}) // if theres is no error, User.signup returns a user object (created in mongoDB?)
     } catch (error) {
