@@ -42,17 +42,17 @@ const ItemDetails = () => {
     <div className={styles.itemDetailContainer}>
       {loading && <div className={styles.loading}>Loading...</div>}
       {!item && !loading && <div className={styles.noItem}>Item doesn't exist</div>}
-      {item && (
+      {!loading && item && (
         <div className={styles.item}>
           {item.imageUrl && (
             <img src={item.imageUrl} alt={item.name || "Item Image"} className={styles.itemImg} />
           )}
           <div className={styles.itemDet}>
-            <h2 className={styles.itemName}>{item.name || "No name available"}</h2>
-            <p className={styles.itemGender}>{item.gender || "No gender available"}</p> 
-            <p className={styles.itemPrice}>{`${item.price || "Price not available"}$`}</p>
-            <p className={styles.itemSize}>{`Size: ${item.size || "Size not available"}`}</p>
-            <p className={styles.itemCondition}>{item.condition || "No condition available"}</p> 
+            <h2 className={styles.itemName}>{item.name}</h2>
+            <p className={styles.itemGender}>{item.gender}</p> 
+            <p className={styles.itemPrice}>{`${item.price}$`}</p>
+            <p className={styles.itemSize}>Size: ${item.size}</p>
+            <p className={styles.itemCondition}>{item.condition}</p> 
             <p className={styles.itemDescription}>
               {item.description || "No description available"}
             </p>
