@@ -37,4 +37,4 @@ const requireAuth = (req, res, next) => {
     }
 }
 
-moldule.exports = requireAuth
+module.exports = requireAuth
