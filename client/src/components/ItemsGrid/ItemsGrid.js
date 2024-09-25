@@ -5,8 +5,6 @@ import styles from './ItemsGrid.module.css';
 import FilterMenu from '../FilterMenu/FilterMenu';  
 import { Link } from 'react-router-dom';
 import SortingDropdown from '../SortingDropdown';
-
-
 const ItemsGrid = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([])
@@ -14,7 +12,6 @@ const ItemsGrid = () => {
   const [filters, setFilters] = useState({
     categories: [],
   });
-
   useEffect(() => {
     const getItems = async () => {
       setLoading(true);
@@ -29,28 +26,37 @@ const ItemsGrid = () => {
         setLoading(false);
       }
     };
-
     getItems();
   }, []);
 
+
+    // Helper function to convert binary image to base64
+    const arrayBufferToBase64 = (buffer) => {
+      let binary = '';
+      const bytes = new Uint8Array(buffer);
+      const len = bytes.byteLength;
+      for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      return window.btoa(binary);
+    };
+
+
   const handleFilterChange = (filters) => {
     const { categories = [], gender = [], conditions = [], priceRange = [0, 500] ,sizes = []} = filters;
-  
+
     const filteredData = data.filter((item) => {
       const categoryMatch = categories.length === 0 || categories.includes(item.category);
       const genderMatch = gender.length === 0 || gender.includes(item.gender);
       const conditionMatch = conditions.length === 0 || conditions.includes(item.condition);
       const sizeMatch = sizes.length === 0 || sizes.includes(item.size);
-
       const priceMatch = item.price >= priceRange[0] && item.price <= priceRange[1];
-
   
       return categoryMatch && genderMatch && conditionMatch && priceMatch && sizeMatch;
     });
   
     setFilteredData(filteredData);
   };
-
   const handleSortChange = (sortOption) => {
     console.log("Before sorting:", filteredData); 
     let sortedData = [...filteredData];
@@ -68,16 +74,6 @@ const ItemsGrid = () => {
     setFilteredData(sortedData); // Set the sorted data
   };
   
-  // Helper function to convert binary image to base64
-  const arrayBufferToBase64 = (buffer) => {
-    let binary = '';
-    const bytes = new Uint8Array(buffer);
-    const len = bytes.byteLength;
-    for (let i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-  };
   
   return (
     <div className={styles.itemsContainer}>
@@ -92,34 +88,28 @@ const ItemsGrid = () => {
           {filteredData.map((item) => (
             <div className={styles.cardContainer} key={item.id}>
               <Link to={`/items/${item.id}`} className={styles.cardLink} key={item.id}> 
-                {item.image ? (
+                 {item.image ? (
                   <img
                     src={`data:image/jpeg;base64,${arrayBufferToBase64(item.image.data)}`}
-                    className="card-img"
+                    className={styles.cardLink}
                     alt={item.name}
-                    key={item.img} 
+                    key={item.id}
                   />
-                /*): (
-                  <img 
-                  src={item.imageUrl} 
-                  className={styles.cardImg} 
-                  alt={item.name} 
-                  key={item.img} 
-                  />*/
                 ) : (
                   // If imageUrl exists, display the image from the URL
                   item.imageUrl && (
                     <img
                       src={item.imageUrl}
-                      className="card-img"
+                      className={styles.cardLink}
                       alt={item.name}
+                      key={item.id}
                     />
                   )
                 )}
-                  <div className={styles.cardBody}>
-                    <h5 className={styles.cardTitle} key={item.name}>{item.name}</h5>
-                    <p className={styles.cardPrice} key={item.price}>{item.price}$</p>
-                  </div>
+                <div className={styles.cardBody}>
+                  <h5 className={styles.cardTitle} key={item.name}>{item.name}</h5>
+                  <p className={styles.cardPrice} key={item.price}>{item.price}$</p>
+                </div>
               </Link>
             </div>
           ))}
@@ -132,5 +122,4 @@ const ItemsGrid = () => {
   );
   
 };
-
 export default ItemsGrid;
