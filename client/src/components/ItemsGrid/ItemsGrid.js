@@ -3,11 +3,12 @@ import api from '../../services/api';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './ItemsGrid.module.css';
 import FilterMenu from '../FilterMenu/FilterMenu';  
-import { Link } from 'react-router-dom';
+import { Link , useParams} from 'react-router-dom';
 import SortingDropdown from '../SortingDropdown';
 
 
 const ItemsGrid = () => {
+  const { gender } = useParams();
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([])
   const [loading, setLoading] = useState(false);
@@ -15,11 +16,13 @@ const ItemsGrid = () => {
     categories: [],
   });
 
+  console.log(gender) 
+  
   useEffect(() => {
     const getItems = async () => {
       setLoading(true);
       try {
-        const response = await api.get('/items');
+        const response = await api.get(`/items/${gender}`);
         const items = response.data.items || response.data;
         setData(Array.isArray(items) ? items : [items]);
         setFilteredData(items);
@@ -31,7 +34,7 @@ const ItemsGrid = () => {
     };
 
     getItems();
-  }, []);
+  }, [gender]);
 
 
     // Helper function to convert binary image to base64

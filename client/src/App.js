@@ -21,8 +21,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/upload" element={<UploadForm />} />
             <Route path="/success" element={<SuccessPage />} />
-            <Route path="/women" element={<ItemsGrid />} />
-            <Route path="/men" element={<ItemsGrid />} />
+            <Route path="/items/:gender" element={<ItemsGrid />} />
+            <Route path="/items/:gender" element={<ItemsGrid />} />
             <Route path="/items/:id" element={<ItemDetails />} />
           </Routes>
         </main>
