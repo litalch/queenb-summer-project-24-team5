@@ -25,7 +25,6 @@ function App() {
             <Link to="/" className={styles.appLink}>Home</Link>
             <Link to="/search" className={styles.appLink}>Search</Link>
             <Link to="/upload" className={styles.appLink}>Upload</Link>
-            
             <Link to="/login" className={styles.appLink}>Login</Link>
             <Link to="/signup" className={styles.appLink}>Signup</Link>
 

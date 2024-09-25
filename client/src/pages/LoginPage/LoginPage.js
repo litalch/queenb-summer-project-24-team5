@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useLogin } from "../../hooks/useLogin"
-
+import '../../styles/uploadForm.css';
 
 // Almost the same as SignupPage.js, with minor modifications
 
@@ -24,8 +24,8 @@ const Login = () => {
 }
 
     return (
-        <form className="login" onSubmit={handleSubmit}>
-            <h3>Log in</h3> 
+        <form className="creat" onSubmit={handleSubmit}>
+            <h3 className="headline">Log in</h3> 
 
             <label>Email:</label>
             <input
