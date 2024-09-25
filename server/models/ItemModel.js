@@ -1,12 +1,15 @@
 const mongoose = require('mongoose');
 
+const Schema = mongoose.Schema;
+
 const itemSchema = new Schema({
     name: {
         type: String,
         required: true
     },
-    imageUrl: {
-        type: String,
+    image: {
+        //type: String,
+        type: Buffer, // Store the image as binary data (Buffer)
         required: true
     },
     category: {
@@ -41,13 +44,14 @@ const itemSchema = new Schema({
         type: Number,
         required: true
     },
-    location: {
+    size: {
         type: String,
-        required: true
+        required: true,
+        enum: ['XS','S', 'M', 'L', 'XL', 'XXL', 'Details in Description']
     },
     description: {
         type: String,
-        required: true
+        //required: true
     }
 }, {
     timestamps: true
