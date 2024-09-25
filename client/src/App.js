@@ -23,7 +23,7 @@ function App() {
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/items/:gender" element={<ItemsGrid />} />
             <Route path="/items/:gender" element={<ItemsGrid />} />
-            <Route path="/items/:id" element={<ItemDetails />} />
+            <Route path="/items/:gender/:id" element={<ItemDetails />} />
           </Routes>
         </main>
         <footer className={styles.footer}>

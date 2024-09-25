@@ -97,7 +97,7 @@ const ItemsGrid = () => {
       <div className={styles.items}>
           {filteredData.map((item) => (   
             <div className={styles.cardContainer} key={item.id}>
-              <Link to={`/items/${item._id}`} className={styles.cardLink} key={item.id}> 
+              <Link to={`/items/${item.gender}/${item._id}`} className={styles.cardLink} key={item.id}> 
                  {item.image ? (
                   <img 
                     src={`data:image/jpeg;base64,${arrayBufferToBase64(item.image.data)}`}
