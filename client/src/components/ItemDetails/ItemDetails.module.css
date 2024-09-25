@@ -1,45 +1,40 @@
-/* ItemDetails.module.css */
 .itemDetailContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     padding: 20px;
-    max-width: 800px; /* הגבלת רוחב העמוד */
-    margin: 0 auto; /* מרכז את העמוד */
-    background-color: #f8f9fa; /* צבע רקע רך */
-    border-radius: 10px; /* פינות מעוגלות */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* צל רך */
+    max-width: 800px; 
+    margin: 0 auto; 
+    border-radius: 10px; 
   }
   
   .item {
-    text-align: center;
+    text-align: left;
   }
   
   .itemImg {
     width: 100%;
     height: auto;
-    max-height: 400px; /* גובה מקסימלי לתמונה */
-    object-fit: cover; /* תצוגת התמונה */
-    border-radius: 10px; /* פינות מעוגלות לתמונה */
+    max-height: 400px; 
+    object-fit: cover; 
+    border-radius: 10px; 
   }
   
   .itemName {
-    font-size: 24px; /* גודל טקסט של שם הפריט */
-    font-weight: bold; /* הדגשת שם הפריט */
-    color: #343a40; /* צבע כהה */
-    margin: 15px 0; /* רווחים למעלה ולמטה */
+    font-size: 24px;
+    font-weight: bold; 
+    color: #4A69BD; 
+    margin: 15px 0; 
   }
   
   .itemPrice {
-    font-size: 20px; /* גודל טקסט של מחיר הפריט */
-    color: #28a745; /* צבע ירוק */
-    margin: 10px 0; /* רווחים */
+    font-size: 20px;
+    margin: 10px 0; 
   }
   
   .itemDescription {
-    font-size: 16px; /* גודל טקסט של תיאור הפריט */
-    color: #495057; /* צבע כהה */
-    margin: 15px 0; /* רווחים */
+    font-size: 16px; 
+    margin: 15px 0; 
   }
   
   .loading,
