@@ -16,11 +16,17 @@ body {
   margin: 0;
 }
 
-img {
+.womensImg, .mensImg {
   max-width: 400px;
   height: auto;
-  margin: 40px;
   display: block;
+  margin: 20px;
+}
+
+.imgLink {
+  height: fit-content;
+  width: fit-content;
+
 }
 
 @media (max-width: 768px) {

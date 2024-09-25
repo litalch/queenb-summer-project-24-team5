@@ -13,22 +13,23 @@ const getAllItems = async (req, res) => {
 // get all women items
 const getAllWomenItems = async (req, res) => {
     try {
-        const items = await Item.find();
-        res.status(200).json({items});
+        const items = await Item.find({ gender: 'Women' });
+        res.status(200).json({ items });
     } catch (err) {
-        res.status(400).json({mssg: 'error getting items', err})
+        res.status(400).json({ mssg: 'error getting items', err });
     }
-}
+};
+
 
 // get all men items
 const getAllMenItems = async (req, res) => {
     try {
-        const items = await Item.find();
-        res.status(200).json({items});
+        const items = await Item.find({ gender: 'Men' });
+        res.status(200).json({ items });
     } catch (err) {
-        res.status(400).json({mssg: 'error getting items', err})
+        res.status(400).json({ mssg: 'error getting items', err });
     }
-}
+};
 
 
 // get a single item
