@@ -10,16 +10,13 @@ const ItemDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("Item ID:", id); // לוג ID
+    console.log("Item ID:", id); 
 
     const fetchItem = async () => {
       try {
         const response = await api.get(`/items/${id}`);
-        console.log("API Response:", response); // לוג התגובה מה-API
-
         if (response.status === 200) {
-          setItem(response.data); // עדכן את ה-state של item
-          console.log("Fetched Item Data:", response.data); // לוג נתונים כאן
+          setItem(response.data); 
         } else {
           console.error('Item not found');
         }
@@ -32,9 +29,6 @@ const ItemDetails = () => {
 
     fetchItem();
   }, [id]);
-
-
-    console.log("Current Item State:", item); // לוג ה-state הנוכחי של item
 
 
   return (
