@@ -96,11 +96,10 @@ const ItemsGrid = () => {
           {filteredData.map((item) => (
             <div className={styles.cardContainer} key={item.id}>
               <Link to={`/items/${item.id}`} className={styles.cardLink} key={item.id}> 
-                //<img src={item.imageUrl} className={styles.cardImg} alt={item.name} key={item.img} />
                  {item.image ? (
-                  <img
+                  <img 
                     src={`data:image/jpeg;base64,${arrayBufferToBase64(item.image.data)}`}
-                    className="card-img"
+                    className={styles.cardImg} key={item.img}
                     alt={item.name}
                   />
                 ) : (
@@ -108,7 +107,7 @@ const ItemsGrid = () => {
                   item.imageUrl && (
                     <img
                       src={item.imageUrl}
-                      className="card-img"
+                      className={styles.cardImg} key={item.img}
                       alt={item.name}
                     />
                   )
