@@ -1,9 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import  { useAuthContext } from './hooks/useAuthContext'
 import Home from './pages/HomePage/HomePage';
 import styles from './styles/App.module.css';
-import FirstButton from "./components/common/FirstButton/FirstButton";
 import Login from './pages/LoginPage/LoginPage';
 import Signup from './pages/SignupPage/SignupPage';
 import {useLogout} from './hooks/useLogout'
@@ -14,10 +14,7 @@ import Navbar from './components/Navbar/Navbar';
 import ItemDetails from './components/ItemDetails/ItemDetails';
 
 function App() {
-  const {Logout} = useLogout()
-  const handleClick = () => {
-    Logout()
-  }
+  const {user} = useAuthContext() // this returns 'null' if the user is logged out, or a user object if the user is logged in
 
   return (
     <BrowserRouter>
@@ -27,14 +24,14 @@ function App() {
         </header>
         <main className={styles.main}>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={ <Home />} />
             <Route path="/upload" element={<UploadForm />} />
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/women" element={<ItemsGrid />} />
             <Route path="/men" element={<ItemsGrid />} />
             <Route path="/items/:id" element={<ItemDetails />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={ !user ? <Login /> : <Navigate to='/'></Navigate> } />
+            <Route path="/signup" element={ !user ? <Signup /> : <Navigate to='/'></Navigate> } />
           </Routes>
         </main>
         <footer className={styles.footer}>
