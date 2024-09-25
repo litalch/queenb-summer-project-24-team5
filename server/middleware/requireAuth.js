@@ -7,7 +7,7 @@ const User = require('../models/userModel')
 // If the token is verified, we use the id to find the user in the database. If it exists, the 
 // next function is called - the user is authenticated. Otherwise, we log an error and send 
 // an error back to the client. 
-const requireAuth = (req, res, next) => {
+const requireAuth = async (req, res, next) => {
 
     // verify authentication
 
