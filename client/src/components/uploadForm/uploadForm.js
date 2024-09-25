@@ -1,6 +1,8 @@
 import { useState } from "react"
 import styles from './uploadForm.css';
 import { useNavigate } from 'react-router-dom';
+import FirstButton from '../common/FirstButton/FirstButton';
+
 
 
 const UploadForm = () => {
@@ -201,7 +203,7 @@ const UploadForm = () => {
                 {/* Price Field */}
                 <label>Price:</label>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <span>₪ / $</span>
+                    <span>$</span>
                     <input 
                         type="Number"
                         onChange={(e) => setPrice(e.target.value)}
@@ -289,7 +291,7 @@ const UploadForm = () => {
                 >
                 </textarea>
                 
-                <button>Add My Item</button>
+                <FirstButton>Add My Item</FirstButton>
                 {error && <div className="error">{error}</div>}
 
             </form>
