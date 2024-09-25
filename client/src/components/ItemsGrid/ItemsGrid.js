@@ -81,7 +81,6 @@ const ItemsGrid = () => {
     setFilteredData(sortedData); // Set the sorted data
   };
   
-
   
   return (
     <div className={styles.itemsContainer}>
@@ -93,13 +92,13 @@ const ItemsGrid = () => {
     {loading && <div className= {styles.loading}>Loading...</div>}
     {filteredData.length > 0 ? (
       <div className={styles.items}>
-          {filteredData.map((item) => (
+          {filteredData.map((item) => (   
             <div className={styles.cardContainer} key={item.id}>
-              <Link to={`/items/${item.id}`} className={styles.cardLink} key={item.id}> 
+              <Link to={`/items/${item._id}`} className={styles.cardLink} key={item.id}> 
                  {item.image ? (
                   <img 
                     src={`data:image/jpeg;base64,${arrayBufferToBase64(item.image.data)}`}
-                    className={styles.cardImg} key={item.img}
+                    className={styles.cardImg} key={item.imageUrl}
                     alt={item.name}
                   />
                 ) : (
@@ -107,7 +106,7 @@ const ItemsGrid = () => {
                   item.imageUrl && (
                     <img
                       src={item.imageUrl}
-                      className={styles.cardImg} key={item.img}
+                      className={styles.cardImg} key={item.imageUrl}
                       alt={item.name}
                     />
                   )
