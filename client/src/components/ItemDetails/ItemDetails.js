@@ -47,7 +47,7 @@ const ItemDetails = () => {
             <p className={styles.itemSize}>Size: {item.item.size}</p>
             <p className={styles.itemCondition}>{item.item.condition}</p> 
             <p className={styles.item.itemDescription}>
-              {item.item.description || "No description available"}
+            Description: {item.item.description || "No description available"}
             </p>
             <FirstButton>Contact Seller</FirstButton>
           </div>
