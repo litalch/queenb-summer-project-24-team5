@@ -1,5 +1,5 @@
 import { useState } from "react"
-import styles from '../styles/uploadForm.css';
+import styles from './uploadForm.css';
 import { useNavigate } from 'react-router-dom';
 
 
