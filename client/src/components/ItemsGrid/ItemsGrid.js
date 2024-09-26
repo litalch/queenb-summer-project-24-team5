@@ -3,11 +3,12 @@ import api from '../../services/api';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './ItemsGrid.module.css';
 import FilterMenu from '../FilterMenu/FilterMenu';  
-import { Link } from 'react-router-dom';
+import { Link , useParams} from 'react-router-dom';
 import SortingDropdown from '../SortingDropdown';
 
 
 const ItemsGrid = () => {
+  const { gender } = useParams();
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([])
   const [loading, setLoading] = useState(false);
@@ -15,11 +16,13 @@ const ItemsGrid = () => {
     categories: [],
   });
 
+  console.log(gender) 
+  
   useEffect(() => {
     const getItems = async () => {
       setLoading(true);
       try {
-        const response = await api.get('/items');
+        const response = await api.get(`/items/${gender}`);
         const items = response.data.items || response.data;
         setData(Array.isArray(items) ? items : [items]);
         setFilteredData(items);
@@ -31,7 +34,7 @@ const ItemsGrid = () => {
     };
 
     getItems();
-  }, []);
+  }, [gender]);
 
 
     // Helper function to convert binary image to base64
@@ -81,7 +84,6 @@ const ItemsGrid = () => {
     setFilteredData(sortedData); // Set the sorted data
   };
   
-
   
   return (
     <div className={styles.itemsContainer}>
@@ -93,13 +95,13 @@ const ItemsGrid = () => {
     {loading && <div className= {styles.loading}>Loading...</div>}
     {filteredData.length > 0 ? (
       <div className={styles.items}>
-          {filteredData.map((item) => (
+          {filteredData.map((item) => (   
             <div className={styles.cardContainer} key={item.id}>
-              <Link to={`/items/${item.id}`} className={styles.cardLink} key={item.id}> 
+              <Link to={`/items/${item.gender}/${item._id}`} className={styles.cardLink} key={item.id}> 
                  {item.image ? (
                   <img 
                     src={`data:image/jpeg;base64,${arrayBufferToBase64(item.image.data)}`}
-                    className={styles.cardImg} key={item.img}
+                    className={styles.cardImg} key={item.imageUrl}
                     alt={item.name}
                   />
                 ) : (
@@ -107,7 +109,7 @@ const ItemsGrid = () => {
                   item.imageUrl && (
                     <img
                       src={item.imageUrl}
-                      className={styles.cardImg} key={item.img}
+                      className={styles.cardImg} key={item.imageUrl}
                       alt={item.name}
                     />
                   )

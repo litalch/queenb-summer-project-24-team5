@@ -4,21 +4,19 @@ import styles from './ItemDetails.module.css';
 import api from '../../services/api';
 import FirstButton from '../common/FirstButton/FirstButton';
 
-function ItemDetails() {
-  const { _id } = useParams();
+const ItemDetails = () => {
+  const { id } = useParams();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("Item ID:", _id);
-    
+    console.log("Item ID:", id); 
+
     const fetchItem = async () => {
       try {
-        const response = await api.get(`/items/${_id}`);
-        
+        const response = await api.get(`/items/${id}`);
         if (response.status === 200) {
-          setItem(response.data);
-          console.log("res:", response.data);
+          setItem(response.data); 
         } else {
           console.error('Item not found');
         }
@@ -27,30 +25,56 @@ function ItemDetails() {
       } finally {
         setLoading(false);
       }
-    }; 
+    };
+
     fetchItem();
   }, [_id]);
 
-  useEffect(() => {
-    console.log("Updated Item:", item);
-  }, [item]);
-  
+
+      // Helper function to convert binary image to base64
+    const arrayBufferToBase64 = (buffer) => {
+      let binary = '';
+      const bytes = new Uint8Array(buffer);
+      const len = bytes.byteLength;
+      for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      return window.btoa(binary);
+    };
+
 
   return (
     <div className={styles.itemDetailContainer}>
       {loading && <div className={styles.loading}>Loading...</div>}
       {!item && !loading && <div className={styles.noItem}>Item doesn't exist</div>}
-      {item && (
+      { item && (
         <div className={styles.item}>
-          <img src={item.imageUrl} alt={item.name} className={styles.itemImg} />
+                {item.item.image ? (
+                  <img 
+                    src={`data:image/jpeg;base64,${arrayBufferToBase64(item.item.image.data)}`}
+                    className={styles.itemImg} key={item.imageUrl}
+                    alt={item.name}
+                  />
+                ) : (
+                  // If imageUrl exists, display the image from the URL
+                  item.item.imageUrl && (
+                    <img
+                      src={item.item.imageUrl}
+                      className={styles.itemImg} key={item.imageUrl}
+                      alt={item.name}
+                    />
+                  )
+                )}
           <div className={styles.itemDet}>
-            <h2 className={styles.itemName}>{item.name}</h2>
-            <p className={styles.itemGender}>{item.gender}</p> 
-            <p className={styles.itemPrice}>{item.price}$</p>
-            <p className={styles.itemSize}>Size: {item.size}</p>
-            <p className={styles.itemCondition}>{item.condition}</p> 
-            <p className={styles.itemDescription}>{item.description}</p> 
-            <FirstButton>Contact Seller</FirstButton>
+            <h2 className={styles.itemName}>{item.item.name}</h2>
+            <p className={styles.itemGender}>{item.item.gender}</p> 
+            <p className={styles.itemPrice}>{`${item.item.price}$`}</p>
+            <p className={styles.itemSize}>Size: {item.item.size}</p>
+            <p className={styles.itemCondition}>{item.item.condition}</p> 
+            <p className={styles.item.itemDescription}>
+            Description: {item.item.description || "No description available"}
+            </p>
+            <FirstButton className={styles.contactBtn}>Contact Seller</FirstButton>
           </div>
         </div>
       )}

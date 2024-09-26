@@ -43,6 +43,9 @@ function App() {
             element={user ? <UploadForm /> : <Navigate to={'/signup'}/> } 
             />
 
+            <Route path="/items/:gender" element={<ItemsGrid />} />
+            <Route path="/items/:gender" element={<ItemsGrid />} />
+            <Route path="/items/:gender/:id" element={<ItemDetails />} />
           </Routes>
         </main>
         <footer className={styles.footer}>
