@@ -17,6 +17,8 @@ const userSchema = new Schema({
     }
 })
 
+////NEED TO SHOW ERRORS IN A CLEAR WAY, BUT THIS WORKS! (at least for signup)
+
 
 // Define a static signup method on the schema
 userSchema.statics.signup = async function(email, password){
@@ -68,7 +70,6 @@ userSchema.statics.signup = async function(email, password){
 
 // Define a static login method on the schema
  userSchema.statics.login = async function(email, password){
-    
     // makes sure that the inputs are not empty
     if (!email || !password){
         throw Error('All fields must be filled.') 

@@ -19,11 +19,12 @@ export const useSignup = () => {
 
             // Await the JSON response
             const json = await response.json(); 
+            console.log(json)
 
             // Check for response errors
             if (!response.ok) {
                 setIsLoading(false);
-                setError(json.error || 'Something went wrong');
+                setError({type: json.type, message: json.error});
                 return; // Exit the function
             }
 
@@ -32,7 +33,7 @@ export const useSignup = () => {
             dispatch({ type: 'LOGIN', payload: json });
 
         } catch (error) {
-            setError('Network error, please try again later.');
+            setError({type: 'network_error', message:'Network error, please try again later.'});
         } finally {
             setIsLoading(false); // Ensure loading state is updated
         }

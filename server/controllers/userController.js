@@ -1,3 +1,4 @@
+const { json } = require('express')
 const User = require('../models/userModel') // we use this to interact with our users collections in our database
 const jwt = require('jsonwebtoken') // will be used to assign tokens to user to determine logged-in status
 
@@ -34,21 +35,18 @@ const loginUser = async (req, res) => {
 // Signup user 
 const signupUser = async (req, res) => {
     const {email, password} = req.body
-
-    try {
+    try { // if theres is no error, User.signup returns a user object (created in mongoDB?)
         const user = await User.signup(email, password)
-
         // create a token assigned to user
         const token = createToken(user._id)
-
-        res.status(200).json({email, token}) // if theres is no error, User.signup returns a user object (created in mongoDB?)
+        res.status(200).json({email, token})
     } catch (error) {
-        res.status(400).json({error: error.mssg})
+        res.status(400).json({error: error.messgage, type: error.type})
     }
 
     // res.json({mssg: 'signup user'}) // this was here when I just wanted to test API requests using Postman, before the logic implemented above
 }
 
 // This allows us to export the above functions for use
-// in other files, particularly in the user.js routes file
+// in other files, particularly in the users.js routes file
 module.exports = {signupUser, loginUser}

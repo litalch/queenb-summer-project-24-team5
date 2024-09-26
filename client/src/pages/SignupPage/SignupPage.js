@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSignup } from "../../hooks/useSignup";
 import FirstButton from "../../components/common/FirstButton/FirstButton";
 
+
 const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -21,9 +22,17 @@ const Signup = () => {
         console.log("Signup, inside handlesubmit, after await");
 
         // Optional: Reset fields after successful signup
-        setEmail('');
-        setPassword('');
+        // setEmail('');
+        // setPassword('');
     }
+
+    const renderErrorMessage = () => {
+        if (!error) return null;
+    
+        // Return just the message string
+        return <p className="error-message">{error.message}</p>;
+    };
+
 
     return (
         <div className="center-wrapper">
@@ -48,7 +57,7 @@ const Signup = () => {
                 {isLoading ? 'Signing up...' : 'Sign up'}
             </FirstButton>
             {formError && <div className="error">{formError}</div>} {/* Display form validation error */}
-            {error && <div className="error">{error}</div>} {/* Display signup error from useSignup */}
+            {error && <div className="error">renderErrorMessage</div>} {/* Display signup error from useSignup */}
         </form>
         </div>
     );
