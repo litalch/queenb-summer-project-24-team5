@@ -1,72 +1,67 @@
 .itemDetailContainer {
   display: flex;
-  justify-content: center; /* ממרכז את התיבה אופקית */
+  justify-content: center;
   padding: 20px;
-  max-width: 100%; /* מאפשר לתיבה להתפרס לרוחב מלא */
+  max-width: 100%;
 }
 
 .item {
   display: flex;
-  flex-direction: row; /* הופך את המכולה לשורה */
-  align-items: flex-start; /* ליישור התמונה והפרטים באותו קו למעלה */
+  flex-direction: row;
+  align-items: stretch;
   text-align: left;
-  background-color: rgba(240, 185, 185, 0.2); 
+  background-color: rgba(240, 185, 185, 0.2);
   width: auto;
-  max-width: 500px;
+  max-width: 2000px;
   height: auto;
   border: 3px solid #F0B9B9;
   border-radius: 30px;
   padding: 20px;
+  box-sizing: border-box;
 }
 
-
-
-.item {
+.itemImgContainer {
   display: flex;
-  flex-direction: row; /* הפיכת המכולה לשורה */
-  align-items: flex-start; /* ליישור התמונה והפרטים באותו קו למעלה */
-  text-align: left;
-  background-color: rgba(240, 185, 185, 0.2); 
-  width: auto;
-  max-width: 500px;
-  height: auto;
-  border: 3px solid #F0B9B9;
-  border-radius: 30px;
-  padding: 20px;
-  text-align: left;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
 }
 
 .itemImg {
-  width: 40%; /* התמונה תופסת 40% מהרוחב הכולל */
-  height: auto;
-  max-height: 400px; /* הגבול המרבי לגובה */
-  object-fit: cover;
+  max-height: 400px;
+  width: auto;
+  object-fit: contain;
   border-radius: 10px;
-  margin-right: 20px; /* רווח בין התמונה לבין הפרטים */
+  margin-right: 15px;
 }
 
 .itemDet {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* כדי למקם את כל הפרטים בצורה מאוזנת */
-  width: 60%; /* הפרטים תופסים 60% מהרוחב הכולל */
+  justify-content: space-between;
+  width: 60%;
+  min-height: 400px;
 }
 
 .itemName {
   font-size: 24px;
   font-weight: bold;
   color: #4A69BD;
-  margin: 15px 0;
+  margin-bottom: 5px;
 }
 
 .itemPrice {
   font-size: 20px;
-  margin: 10px 0;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
-.itemDescription {
+.itemDescription,
+.itemSize,
+.itemCondition {
   font-size: 16px;
-  margin: 15px 0;
+  margin: 0;
+  padding: 0;
 }
 
 .loading,
@@ -75,4 +70,8 @@
   color: #4A69BD;
   font-size: 30px;
   font-weight: bolder;
+}
+
+.contactBtn {
+  margin-top: 30px;
 }
