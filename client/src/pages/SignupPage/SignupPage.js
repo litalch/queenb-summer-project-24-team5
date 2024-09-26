@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSignup } from "../../hooks/useSignup";
+import FirstButton from "../../components/common/FirstButton/FirstButton";
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -25,8 +26,9 @@ const Signup = () => {
     }
 
     return (
-        <form className="signup" onSubmit={handleSubmit}>
-            <h3>Sign up</h3>
+        <div className="center-wrapper">
+        <form className="creat" onSubmit={handleSubmit}>
+            <h3 className="headline">Sign up</h3>
 
             <label>Email:</label>
             <input
@@ -42,12 +44,13 @@ const Signup = () => {
                 value={password}
             />
 
-            <button disabled={isLoading}>
+            <FirstButton disabled={isLoading}>
                 {isLoading ? 'Signing up...' : 'Sign up'}
-            </button>
+            </FirstButton>
             {formError && <div className="error">{formError}</div>} {/* Display form validation error */}
             {error && <div className="error">{error}</div>} {/* Display signup error from useSignup */}
         </form>
+        </div>
     );
 }
 

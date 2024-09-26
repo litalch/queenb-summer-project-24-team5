@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useLogin } from "../../hooks/useLogin"
-import '../../styles/uploadForm.css';
+import '../SignupPage/SignupPage.css';
+import FirstButton from "../../components/common/FirstButton/FirstButton";
 
 // Almost the same as SignupPage.js, with minor modifications
 
@@ -24,6 +25,7 @@ const Login = () => {
 }
 
     return (
+        <div className="center-wrapper">
         <form className="creat" onSubmit={handleSubmit}>
             <h3 className="headline">Log in</h3> 
 
@@ -41,9 +43,10 @@ const Login = () => {
                 value={password} // if we change the state from above, we want it to reflect the change in here            
              />
 
-            <button disabled={isLoading}>Log in</button>
+            <FirstButton disabled={isLoading}>Log in</FirstButton>
             {error && <div className="error">{error}</div>}
         </form>
+        </div>
     )
 }
 
