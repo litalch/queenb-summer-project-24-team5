@@ -49,7 +49,7 @@ const ItemDetails = () => {
             <p className={styles.item.itemDescription}>
             Description: {item.item.description || "No description available"}
             </p>
-            <FirstButton>Contact Seller</FirstButton>
+            <FirstButton className={styles.contactBtn}>Contact Seller</FirstButton>
           </div>
         </div>
       )}
