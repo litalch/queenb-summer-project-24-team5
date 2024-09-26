@@ -25,8 +25,7 @@ const loginUser = async (req, res) => {
 
         res.status(200).json({email, token}) // if there is no error, User.login returns a user object
     } catch (error) {
-        res.status(400).json({error: error.mssg})
-    }
+        res.status(400).json({error: error.messgage, type: error.type})}
     
     
     // res.json({mssg: 'login user'}) // this was here when I just wanted to test API requests using Postman, before the logic implemented above
@@ -35,10 +34,12 @@ const loginUser = async (req, res) => {
 // Signup user 
 const signupUser = async (req, res) => {
     const {email, password} = req.body
+
     try { // if theres is no error, User.signup returns a user object (created in mongoDB?)
         const user = await User.signup(email, password)
         // create a token assigned to user
         const token = createToken(user._id)
+        
         res.status(200).json({email, token})
     } catch (error) {
         res.status(400).json({error: error.messgage, type: error.type})
