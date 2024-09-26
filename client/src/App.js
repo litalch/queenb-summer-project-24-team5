@@ -26,9 +26,9 @@ function App() {
           <Routes>
             <Route path="/" element={ <Home />} />
             <Route path="/success" element={<SuccessPage />} />
-            <Route path="/women" element={<ItemsGrid />} />
-            <Route path="/men" element={<ItemsGrid />} />
-            <Route path="/items/:id" element={<ItemDetails />} />
+            <Route path="/items/:gender" element={<ItemsGrid />} />
+            <Route path="/items/:gender" element={<ItemsGrid />} />
+            <Route path="/items/:gender/:id" element={<ItemDetails />} />
 
             {/* Protecting routes - logged in users shouldn't be able to reach the login/signup forms, and logged out users the upload-items form */}
             <Route 
@@ -43,9 +43,6 @@ function App() {
             element={user ? <UploadForm /> : <Navigate to={'/signup'}/> } 
             />
 
-            <Route path="/items/:gender" element={<ItemsGrid />} />
-            <Route path="/items/:gender" element={<ItemsGrid />} />
-            <Route path="/items/:gender/:id" element={<ItemDetails />} />
           </Routes>
         </main>
         <footer className={styles.footer}>
