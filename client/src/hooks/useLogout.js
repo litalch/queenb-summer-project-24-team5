@@ -1,17 +1,16 @@
-import { useAuthContext } from "./useAuthContext"
+import { useAuthContext } from "./useAuthContext";
 
 export const useLogout = () => {
-// we don't actully need to send a request to the backend. 
-// we only need to change the state and delete the token from the local storage
-const Logout = () => { 
-    const {dispatch} = useAuthContext()
+    const { dispatch } = useAuthContext(); // Use hook at the top level
 
-    // The following removes user from storage
-    localStorage.removeItem('user')
+    // Logout function that can be called in components
+    const logout = () => {
+        // Remove user from local storage
+        localStorage.removeItem('user');
+        
+        // Dispatch logout action
+        dispatch({ type: 'LOGOUT' });
+    };
 
-    // dispatch logout action
-    dispatch({type: 'LOGOUT'})
-}
-
-return {Logout}
-}
+    return logout;
+};
