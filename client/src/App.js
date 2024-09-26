@@ -25,7 +25,6 @@ function App() {
         <main className={styles.main}>
           <Routes>
             <Route path="/" element={ <Home />} />
-            <Route path="/upload" element={<UploadForm />} />
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/women" element={<ItemsGrid />} />
             <Route path="/men" element={<ItemsGrid />} />
@@ -40,6 +39,10 @@ function App() {
             path="/signup" 
             element={!user ? <Signup/>: <Navigate to={'/'}/> } 
             />
+            <Route path="/upload"
+            element={user ? <UploadForm /> : <Navigate to={'/signup'}/> } 
+            />
+
           </Routes>
         </main>
         <footer className={styles.footer}>

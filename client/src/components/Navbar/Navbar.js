@@ -19,14 +19,17 @@ const Navbar = () => {
       </Link>
       <div className={styles.menu}>
         <Link to="/" className={styles.appLink}>Home</Link>
-        <Link to="/upload" className={styles.appLink}>Upload</Link>
+        {user ? (<div> <Link to="/upload" className={styles.appLink}>Upload</Link>
+</div>) : (<div> <Link to="/signup" className={styles.appLink}>Upload</Link>
+  </div>)}
+        
         <Link to="/women" className={styles.appLink}>Womens</Link>
         <Link to="/men" className={styles.appLink}>Mens</Link>
 
         {user ? (
           <div> 
-            <span>Hi, {user.email}!</span>
-            <button onClick={handleClick}>Log out</button>
+            <span>Hi, {user.email}! </span>
+            <button class="logout-button" onClick={handleClick}>Log out</button>
           </div>
         ) : (
           <div> 
