@@ -5,16 +5,16 @@ import api from '../../services/api';
 import FirstButton from '../common/FirstButton/FirstButton';
 
 const ItemDetails = () => {
-  const { _id } = useParams();
+  const { id } = useParams();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("Item ID:", _id); 
+    console.log("Item ID:", id); 
 
     const fetchItem = async () => {
       try {
-        const response = await api.get(`/items/${_id}`);
+        const response = await api.get(`/items/${id}`);
         if (response.status === 200) {
           setItem(response.data); 
         } else {
@@ -28,7 +28,7 @@ const ItemDetails = () => {
     };
 
     fetchItem();
-  }, [_id]);
+  }, [id]);
 
 
       // Helper function to convert binary image to base64
