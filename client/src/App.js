@@ -30,7 +30,7 @@ function App() {
             <Route path="/men" element={<ItemsGrid />} />
             <Route path="/items/:id" element={<ItemDetails />} />
 
-            {/* Protecting routes - logged in users shouldn't be able to reach the login/signup forms */}
+            {/* Protecting routes - logged in users shouldn't be able to reach the login/signup forms, and logged out users the upload-items form */}
             <Route 
             path="/login" 
             element={!user ? <Login/>: <Navigate to={'/'}/> } 
