@@ -8,51 +8,51 @@
 .item {
   display: flex;
   flex-direction: row;
-  align-items: stretch; /* מקטין את רוחב התמונה כך שיישאר יותר מקום לפרטים */
+  align-items: stretch;
   text-align: left;
   background-color: rgba(240, 185, 185, 0.2);
-  width: 100%;
-  max-width: 700px;
+  width: auto;
+  max-width: 2000px;
   height: auto;
   border: 3px solid #F0B9B9;
   border-radius: 30px;
   padding: 20px;
-  box-sizing: border-box; /* מבטיח שהרוחב כולל את הפדינג והבדרים */
+  box-sizing: border-box;
 }
 
 .itemImgContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 35%; /* רוחב התמונה */
+  width: 35%;
 }
 
 .itemImg {
-  max-height: 400px; /* מגביל את גובה התמונה */
-  width: auto; /* הרוחב יותאם לגובה כדי לשמור על יחס הרוחב-גובה */
-  object-fit: contain; /* מבטיח שהתמונה לא תיחתך */
+  max-height: 400px;
+  width: auto;
+  object-fit: contain;
   border-radius: 10px;
   margin-right: 15px;
 }
 
 .itemDet {
-  display: flex; /* משנים ל-Flex */
-  flex-direction: column; /* יישור אנכי */
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  width: 60%; /* מגדיל את החלק של הפרטים */
-  min-height: 400px; /* גובה מינימלי שיתאים לגובה של התמונה */
+  width: 60%;
+  min-height: 400px;
 }
 
 .itemName {
   font-size: 24px;
   font-weight: bold;
   color: #4A69BD;
-  margin-bottom: 5px; /* מרווח מתחת לשם */
+  margin-bottom: 5px;
 }
 
 .itemPrice {
   font-size: 20px;
-  margin-bottom: 20px; /* משתנה כדי להקטין את הריווח */
+  margin-bottom: 20px;
   font-weight: bold;
 }
 
@@ -60,8 +60,8 @@
 .itemSize,
 .itemCondition {
   font-size: 16px;
-  margin: 0; /* מסיר ריווח */
-  padding: 0; /* מסיר ריווח */
+  margin: 0;
+  padding: 0;
 }
 
 .loading,
@@ -73,5 +73,5 @@
 }
 
 .contactBtn {
-  margin-top: 30px; /* מרווח מעל הכפתור */
+  margin-top: 30px;
 }

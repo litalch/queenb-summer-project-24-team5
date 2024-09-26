@@ -31,15 +31,40 @@ const ItemDetails = () => {
   }, [id]);
 
 
+      // Helper function to convert binary image to base64
+    const arrayBufferToBase64 = (buffer) => {
+      let binary = '';
+      const bytes = new Uint8Array(buffer);
+      const len = bytes.byteLength;
+      for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      return window.btoa(binary);
+    };
+
+
   return (
     <div className={styles.itemDetailContainer}>
       {loading && <div className={styles.loading}>Loading...</div>}
       {!item && !loading && <div className={styles.noItem}>Item doesn't exist</div>}
       { item && (
         <div className={styles.item}>
-          {item.item.imageUrl && (
-            <img src={item.item.imageUrl} alt={item.imageUrl || "Item Image"} className={styles.itemImg} />
-          )}
+                {item.item.image ? (
+                  <img 
+                    src={`data:image/jpeg;base64,${arrayBufferToBase64(item.item.image.data)}`}
+                    className={styles.itemImg} key={item.imageUrl}
+                    alt={item.name}
+                  />
+                ) : (
+                  // If imageUrl exists, display the image from the URL
+                  item.item.imageUrl && (
+                    <img
+                      src={item.item.imageUrl}
+                      className={styles.itemImg} key={item.imageUrl}
+                      alt={item.name}
+                    />
+                  )
+                )}
           <div className={styles.itemDet}>
             <h2 className={styles.itemName}>{item.item.name}</h2>
             <p className={styles.itemGender}>{item.item.gender}</p> 
