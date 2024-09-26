@@ -5,9 +5,7 @@ const dotenv = require('dotenv');
 const rubberDucksRoutes = require('./routes/rubberDucks')
 const userRoutes = require('./routes/users')
 const itemsRoutes = require('./routes/itemsRoutes');
-const cors = require('cors');
-app.use(cors());
-app.use(express.json());
+const { signupUser } = require('./controllers/userController');
 
 dotenv.config();
 
