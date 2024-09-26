@@ -30,8 +30,16 @@ function App() {
             <Route path="/women" element={<ItemsGrid />} />
             <Route path="/men" element={<ItemsGrid />} />
             <Route path="/items/:id" element={<ItemDetails />} />
-            <Route path="/login" element={ !user ? <Login /> : <Navigate to='/'></Navigate> } />
-            <Route path="/signup" element={ !user ? <Signup /> : <Navigate to='/'></Navigate> } />
+
+            {/* Protecting routes - logged in users shouldn't be able to reach the login/signup forms */}
+            <Route 
+            path="/login" 
+            element={!user ? <Login/>: <Navigate to={'/'}/> } 
+            />
+            <Route 
+            path="/signup" 
+            element={!user ? <Signup/>: <Navigate to={'/'}/> } 
+            />
           </Routes>
         </main>
         <footer className={styles.footer}>
