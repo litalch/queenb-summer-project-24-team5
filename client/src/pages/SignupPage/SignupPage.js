@@ -39,7 +39,9 @@ const Signup = () => {
             <h3 className="headline">Sign up</h3>
             
             <h1 className="subtext"> Did you know? Only registered users can upload and sell their own
-                items. Sign up so you don't miss out! </h1>
+                items. Sign up here so you don't miss out!
+                <em>Already have an account? <a href="/login" className="link" > Log in. </a> </em>
+                </h1>
 
                            
             <label>Email:</label>
