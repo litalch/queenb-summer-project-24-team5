@@ -53,7 +53,7 @@ const ItemDetails = () => {
         <div className={styles.item}>
                 {item.item.image ? (
                   <img 
-                    src={`data:image/jpeg;base64,${arrayBufferToBase64(item.item.imageUrl.data)}`}
+                    src={`data:image/jpeg;base64,${arrayBufferToBase64(item.item.image.data)}`}
                     className={styles.itemImg} key={item.imageUrl}
                     alt={item.name}
                   />
