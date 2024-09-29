@@ -43,7 +43,7 @@ body {
 .instructions {
     display: block; /* Ensures the text is below the headline */
     font-size: 14px; /* Moderate size */
-    color: #2b9ea8; /* Pink color */
+    color: #a82b76; /* Pink color */
     margin-top: 8px; /* Small space between the headline and instructions */
     margin-bottom: 16px; /* Space between the instructions and the form fields */
     text-align: center; /* Center the text */
