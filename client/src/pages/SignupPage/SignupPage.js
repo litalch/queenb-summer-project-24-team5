@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSignup } from "../../hooks/useSignup";
 import FirstButton from "../../components/common/FirstButton/FirstButton";
+import { NavLink } from "react-router-dom";
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -34,8 +35,13 @@ const Signup = () => {
     return (
         <div className="center-wrapper">
         <form className="creat" onSubmit={handleSubmit}>
-            <h3 className="headline">Sign up</h3>
 
+            <h3 className="headline">Sign up</h3>
+            
+            <h1 className="subtext"> Did you know? Only registered users can upload and sell their own
+                items. Sign up so you don't miss out! </h1>
+
+                           
             <label>Email:</label>
             <input
                 type="email"
@@ -50,13 +56,16 @@ const Signup = () => {
                 value={password}
             />
 
+            <p className="instructions">Please make sure that your email is valid and that your
+                password is strong; your password should be at least 8 characters long, 
+                and contain all of the following: lowercase and uppercase letters, numbers, symbols. </p> 
+
             <FirstButton disabled={isLoading}>
                 {isLoading ? 'Signing up...' : 'Sign up'}
             </FirstButton>
             {formError && <div className="error">{formError}</div>} {/* Display form validation error */}
-            {error && <div className="error">An error occured. Please make sure that your email is valid, 
-                and that your password is strong enough. Your password should be at least 8 characters long, 
-                and contain all of the following: lowercase and uppercase letters, numbers, symbols.
+            {error && <div className="error">Please make sure that your email is valid and not already in use, 
+                and that your password is strong. 
                 </div>} 
         </form>
         </div>

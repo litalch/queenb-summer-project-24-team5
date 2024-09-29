@@ -33,7 +33,7 @@ export const useLogin = () => {
             dispatch({type: 'LOGIN', payload: json})
              
         } catch (error) {
-            setError({type: '', message:''})
+            setError({type: 'network_error', message:'Network error, please try again later.'});
         } finally {
             setIsLoading(false);
         }

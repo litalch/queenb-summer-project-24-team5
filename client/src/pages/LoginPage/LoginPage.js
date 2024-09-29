@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useLogin } from "../../hooks/useLogin"
 import '../SignupPage/SignupPage.css';
 import FirstButton from "../../components/common/FirstButton/FirstButton";
+import { Link } from "react-router-dom";
 
 // Almost the same as SignupPage.js, with minor modifications
 
@@ -25,7 +26,7 @@ const Login = () => {
         e.preventDefault() // when we submit a form, the default event is to refresh the page, and we want to prevent that
         setFormError(null); // Reset form error before validation
         if (!email || !password) {
-            setFormError('Please fill in all fields.'); // Set form error if validation fails
+            setFormError('Please fill in all the fields. Always make sure that your email is valid.'); // Set form error if validation fails
             return; // Exit the function if validation fails
         }
 
@@ -36,6 +37,11 @@ const Login = () => {
         <div className="center-wrapper">
         <form className="creat" onSubmit={handleSubmit}>
             <h3 className="headline">Log in</h3> 
+
+            <h1 className="subtext"> 
+                Welcome back! This form is for registered users wishing to log in.
+                Don't have an account yet? 
+                <a href="/signup" className="link"> Sign up!</a>                </h1>
 
             <label>Email:</label>
             <input
@@ -55,8 +61,8 @@ const Login = () => {
                 {isLoading ? 'Logging in...' : 'Log in'}
             </FirstButton>
             {formError && <div className="error">{formError}</div>} {/* Display form validation error */}
-            {error && <div className="error">An error occured. Please check your credentials. 
-                If you do not have a user yet, please create one in the Sign up page. 
+            {error && <div className="error">Nonexistent user, please check your credentials. 
+                If you are trying to register, please <a href="/signup" className="link"> sign up.</a> 
                 </div>} 
 
         </form>

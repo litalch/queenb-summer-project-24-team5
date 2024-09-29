@@ -33,7 +33,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div> 
-            <Link to="/login" className={styles.appLink}>Log in</Link>
+            <Link to="/login" className={styles.appLink}>Log in     </Link>
             <Link to="/signup" className={styles.appLink}>Sign up</Link>
           </div>
         )}
