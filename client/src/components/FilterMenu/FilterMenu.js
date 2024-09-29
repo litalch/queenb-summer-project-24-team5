@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import FirstButton from '../common/FirstButton/FirstButton';
 import './FilterMenu.css'; 
 import FilterSection from './FilterSection';
 import PriceRangeSection from './PriceRangeSection';
@@ -102,10 +103,7 @@ const FilterMenu = ({ onFilterChange }) => {
         priceRange={priceRange}
         handlePriceChange={handlePriceChange}
       />
-
-      <button className="apply-button" onClick={handleApply}>
-        Apply
-      </button>
+      <FirstButton onClick={handleApply}>Apply</FirstButton>
     </div>
   );
 };
