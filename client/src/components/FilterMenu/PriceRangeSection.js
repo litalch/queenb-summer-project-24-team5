@@ -22,7 +22,7 @@ const PriceRangeSection = ({ title, priceRange, handlePriceChange }) => {
                 onChange={handlePriceChange}
                 valueLabelDisplay="auto"
                 min={0}
-                max={500} // Adjust the max value based on your needs
+                max={501} // Adjust the max value based on your needs
               />
             )}
     </div>
