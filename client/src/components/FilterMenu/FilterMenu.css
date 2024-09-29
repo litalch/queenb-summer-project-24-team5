@@ -4,9 +4,9 @@
   top: 128px; /* Adjust this value to position it below the navbar */
   left: 0; /* Align to the right side */
   width: 220px; /* Width of the menu */
-  background-color: #f4f4f4; /* Light background color */
+  background-color: #FAF4EF; /* Light background color */
   padding: 20px; /* Padding inside the menu */
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow for visual separation on the right side */
+  /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); Shadow for visual separation on the right side */
   height: calc(100vh - 80px);/*  Full height minus the navbar height */
   overflow-y: auto; /* Scroll if content overflows */
   z-index: 1; /* Ensure it is above other content, but within the flow */
@@ -30,7 +30,7 @@
   .apply-button {
     width: 100%; /* Full width for better responsiveness */
     height: 40px; /* Increased height for a better click area */
-    margin-top: 20px; /* Adjusted margin for better spacing */
+    /* Adjusted margin for better spacing */
     background-color: #4A69BD; /* Main background color */
     color: white; /* Changed text color for better contrast */
     border: none; /* No border */
@@ -56,5 +56,6 @@ h4{
 }
 
 h3{
-  font-size: 22px;
+  font-size: 20px;
+  color: #4A69BD;
 }
