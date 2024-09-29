@@ -17,6 +17,8 @@ const ItemDetails = () => {
         const response = await api.get(`/items/${id}`);
         if (response.status === 200) {
           setItem(response.data); 
+          console.log("res:", response.data);
+          console.log("item res:", item);
         } else {
           console.error('Item not found');
         }
@@ -42,7 +44,7 @@ const ItemDetails = () => {
       return window.btoa(binary);
     };
 
-
+    console.log("item:", item)
   return (
     <div className={styles.itemDetailContainer}>
       {loading && <div className={styles.loading}>Loading...</div>}
@@ -51,7 +53,7 @@ const ItemDetails = () => {
         <div className={styles.item}>
                 {item.item.image ? (
                   <img 
-                    src={`data:image/jpeg;base64,${arrayBufferToBase64(item.item.image.data)}`}
+                    src={`data:image/jpeg;base64,${arrayBufferToBase64(item.item.imageUrl.data)}`}
                     className={styles.itemImg} key={item.imageUrl}
                     alt={item.name}
                   />

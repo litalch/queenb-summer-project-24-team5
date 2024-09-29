@@ -34,10 +34,10 @@ const getAllMenItems = async (req, res) => {
 
 // get a single item
 const getSingleItem = async (req, res) => {
-    const {_id} = req.params;
-
+    const {id} = req.params;
+console.log(JSON.stringify(req.params), id)
     try {
-        const item = await Item.findById(_id);
+        const item = await Item.findById(id);
         res.status(200).json({item});
     } catch (err) {
         res.status(400).json({mssg: 'error getting item', err})
