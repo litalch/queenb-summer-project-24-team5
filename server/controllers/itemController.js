@@ -34,10 +34,10 @@ const getAllMenItems = async (req, res) => {
 
 // get a single item
 const getSingleItem = async (req, res) => {
-    const {id} = req.params;
+    const {_id} = req.params;
 
     try {
-        const item = await Item.findById(id);
+        const item = await Item.findById(_id);
         res.status(200).json({item});
     } catch (err) {
         res.status(400).json({mssg: 'error getting item', err})
@@ -127,10 +127,10 @@ const createItem = async (req, res) => {
 
 // delete item
 const deleteItem = async (req, res) => {
-    const {id} = req.params;
+    const {_id} = req.params;
 
     try {
-        const item = await Item.findByIdAndDelete(id);
+        const item = await Item.findByIdAndDelete(_id);
         res.status(200).json({item});
     } catch (err) {
         res.status(400).json({mssg: 'error deleting item', err})
@@ -139,11 +139,11 @@ const deleteItem = async (req, res) => {
 
 // update item
 const updateItem = async (req, res) => {
-    const {id} = req.params;
-    const {name, category, gender, condition, price, size, imageUrl, description} = req.body;
+    const {_id} = req.params;
+    const {name, category, gender, condition, price, size, image, description} = req.body;
 
     try {
-        const item = await Item.findByIdAndUpdate(id, {name, category, gender, condition, price, size, imageUrl, description}, {new: true});
+        const item = await Item.findByIdAndUpdate(_id, {name, category, gender, condition, price, size, image, description}, {new: true});
         res.status(200).json({item});
     } catch (err) {
         res.status(400).json({mssg: 'error updating item', err})

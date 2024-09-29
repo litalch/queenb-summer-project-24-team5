@@ -42,7 +42,7 @@ const ItemDetails = () => {
       return window.btoa(binary);
     };
 
-
+    console.log("item:", item)
   return (
     <div className={styles.itemDetailContainer}>
       {loading && <div className={styles.loading}>Loading...</div>}
