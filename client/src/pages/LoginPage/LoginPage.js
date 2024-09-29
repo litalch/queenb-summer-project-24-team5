@@ -16,13 +16,21 @@ const Login = () => {
     const [email, setEmail] = useState('') // email state
     const [password, setPassword] = useState('') // password state
     const {login, error, isLoading} = useLogin()
+    const [formError, setFormError] = useState(null); // State for form validation error
+
 
     // In "return" below, we will have a button that says 'Log in' (ideal use would be after filling in an email and a password in the form).
     // This 'handleSubmit' function handles the submit event caused by clicking on that button.
     const handleSubmit = async (e) => { // async because we will want to make a request to the server
         e.preventDefault() // when we submit a form, the default event is to refresh the page, and we want to prevent that
+        setFormError(null); // Reset form error before validation
+        if (!email || !password) {
+            setFormError('Please fill in all fields.'); // Set form error if validation fails
+            return; // Exit the function if validation fails
+        }
+
         await login(email, password)
-}
+    }
 
     return (
         <div className="center-wrapper">
@@ -43,12 +51,18 @@ const Login = () => {
                 value={password} // if we change the state from above, we want it to reflect the change in here            
              />
 
-            <FirstButton disabled={isLoading}>Log in</FirstButton>
-            {error && <div className="error">{error}</div>}
+            <FirstButton disabled={isLoading}>
+                {isLoading ? 'Logging in...' : 'Log in'}
+            </FirstButton>
+            {formError && <div className="error">{formError}</div>} {/* Display form validation error */}
+            {error && <div className="error">An error occured. Please check your credentials. 
+                If you do not have a user yet, please create one in the Sign up page. 
+                </div>} 
+
         </form>
         </div>
     )
 }
 
 
-export default Login
+export default Login;

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useSignup } from "../../hooks/useSignup";
 import FirstButton from "../../components/common/FirstButton/FirstButton";
 
-
 const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,21 +16,19 @@ const Signup = () => {
             return; // Exit the function if validation fails
         }
 
-        console.log("Signup, inside handlesubmit, before await");
         await signup(email, password); // Call signup function
-        console.log("Signup, inside handlesubmit, after await");
 
         // Optional: Reset fields after successful signup
         // setEmail('');
         // setPassword('');
     }
 
-    const renderErrorMessage = () => {
-        if (!error) return null;
+    // const renderErrorMessage = () => {
+    //     if (!error) return null;
     
-        // Return just the message string
-        return <p className="error-message">{error.message}</p>;
-    };
+    //     // Return just the message string
+    //     return <p className="error-message">{error.message}</p>;
+    // };
 
 
     return (
@@ -57,7 +54,10 @@ const Signup = () => {
                 {isLoading ? 'Signing up...' : 'Sign up'}
             </FirstButton>
             {formError && <div className="error">{formError}</div>} {/* Display form validation error */}
-            {error && <div className="error">renderErrorMessage</div>} {/* Display signup error from useSignup */}
+            {error && <div className="error">An error occured. Please make sure that your email is valid, 
+                and that your password is strong enough. Your password should be at least 8 characters long, 
+                and contain all of the following: lowercase and uppercase letters, numbers, symbols.
+                </div>} 
         </form>
         </div>
     );

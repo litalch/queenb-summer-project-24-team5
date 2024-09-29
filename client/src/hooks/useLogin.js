@@ -23,7 +23,7 @@ export const useLogin = () => {
     
             if (!response.ok){ // read as: if it's not okay, if we have a problem:
                 setIsLoading(false) // because now we're not loading
-                setError(json.error) // there is a problem, we raise an error
+                setError({type: json.type, message: json.error}) // there is a problem, we raise an error
                 return;
             }
 
