@@ -140,10 +140,10 @@ const deleteItem = async (req, res) => {
 // update item
 const updateItem = async (req, res) => {
     const {_id} = req.params;
-    const {name, category, gender, condition, price, size, imageUrl, description} = req.body;
+    const {name, category, gender, condition, price, size, image, description} = req.body;
 
     try {
-        const item = await Item.findByIdAndUpdate(_id, {name, category, gender, condition, price, size, imageUrl, description}, {new: true});
+        const item = await Item.findByIdAndUpdate(_id, {name, category, gender, condition, price, size, image, description}, {new: true});
         res.status(200).json({item});
     } catch (err) {
         res.status(400).json({mssg: 'error updating item', err})
