@@ -28,6 +28,19 @@
   .appLink:hover {
     color: #F0B9B9;
   }
+
+  .appAuthLinks {
+    color: #2a19ae;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    height: fit-content;
+  }
+  
+  .appAuthLinks:hover {
+    color: #F0B9B9;
+  }
+
   
   .navButton {
     padding: 10px 20px;
