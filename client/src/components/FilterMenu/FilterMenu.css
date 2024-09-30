@@ -1,31 +1,33 @@
 /* src/components/FilterMenu.css */
 .filter-menu {
-  position: absolute; /* Use absolute positioning */
-  top: 128px; /* Adjust this value to position it below the navbar */
-  left: 0; /* Align to the right side */
+  position: absolute; 
+  top: 140px; 
+  /* left: 0; Align to the right side */
   width: 220px; /* Width of the menu */
   background-color: #FAF4EF; /* Light background color */
-  padding: 20px; /* Padding inside the menu */
+  padding-left: 20px;
+  height: calc(100vh - 220px);
   /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); Shadow for visual separation on the right side */
-  height: calc(100vh - 80px);/*  Full height minus the navbar height */
-  overflow-y: auto; /* Scroll if content overflows */
-  z-index: 1; /* Ensure it is above other content, but within the flow */
+  overflow-y: auto; 
+  z-index: 1; 
 
 }
 .filter-option {
   text-align: left;
-  margin: 10px 10px 10px 10px; /* Space between filter options */
+  /* margin: 10px 10px 10px 10px; Space between filter options */
 }
 .filter-menu label {
   font-size: 10px; /* Adjust the font size as needed */
-  margin-right: 5px; 
+  margin-left: 0px; 
+  font-weight: normal;
+  white-space: nowrap;
 }
 
 /* .filter-menu input[type="checkbox"] {
   /* transform: scale(0.8); Make the checkbox smaller */
   /* margin-right: 5px; Space between checkbox and text */
 .filter-menu .checkbox-container {
-    margin-bottom: 1px; /* Adjust this value to reduce spacing */
+  width: 20px; /* Adjust this value to reduce spacing */
   }
   .apply-button {
     width: 100%; /* Full width for better responsiveness */
