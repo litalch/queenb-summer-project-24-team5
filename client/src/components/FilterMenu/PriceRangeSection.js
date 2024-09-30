@@ -1,7 +1,6 @@
 import React from 'react';
 import './FilterSection.css';
-import {Slider} from '@mui/material';
-
+import { Slider } from '@mui/material';
 
 const PriceRangeSection = ({ title, priceRange, handlePriceChange }) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -17,14 +16,15 @@ const PriceRangeSection = ({ title, priceRange, handlePriceChange }) => {
         <span className="plus-icon">{isOpen ? '-' : '+'}</span>
       </div>
       {isOpen && (
-                <Slider
-                value={priceRange}
-                onChange={handlePriceChange}
-                valueLabelDisplay="auto"
-                min={0}
-                max={501} // Adjust the max value based on your needs
-              />
-            )}
+        <Slider
+          value={priceRange}
+          onChange={handlePriceChange}
+          valueLabelDisplay="auto"
+          min={0}
+          max={1001} // Adjust the max value based on your needs
+          style={{ width: '180px', margin: '10px auto' }} // Inline style to adjust width
+        />
+      )}
     </div>
   );
 };

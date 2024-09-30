@@ -10,7 +10,7 @@ const FilterMenu = ({ onFilterChange }) => {
   const [selectedGender, setSelectedGender] = useState([]);
   const [selectedConditions, setSelectedConditions] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, 100]); 
+  const [priceRange, setPriceRange] = useState([0, 1000]); 
 
 
   const categories = [
