@@ -23,7 +23,7 @@ export const useLogin = () => {
     
             if (!response.ok){ // read as: if it's not okay, if we have a problem:
                 setIsLoading(false) // because now we're not loading
-                setError(json.error) // there is a problem, we raise an error
+                setError({type: json.type, message: json.error}) // there is a problem, we raise an error
                 return;
             }
 
@@ -33,7 +33,7 @@ export const useLogin = () => {
             dispatch({type: 'LOGIN', payload: json})
              
         } catch (error) {
-            setError({type: '', message:''})
+            setError({type: 'network_error', message:'Network error, please try again later.'});
         } finally {
             setIsLoading(false);
         }

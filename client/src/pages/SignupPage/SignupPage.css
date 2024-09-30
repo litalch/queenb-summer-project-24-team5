@@ -31,6 +31,38 @@ body {
     text-align: center;
 }
 
+.subtext {
+    display: block; /* Ensures the text appears under the headline */
+    font-size: 14px; /* Smaller font size */
+    color: #555; /* Gray color */
+    margin-top: 8px; /* Small space between the headline and subtext */
+    margin-bottom: 16px; /* Space between the subtext and the form fields */
+    text-align: center; /* Center the text */
+}
+
+.instructions {
+    display: block; /* Ensures the text is below the headline */
+    font-size: 14px; /* Moderate size */
+    color: #a82b76; /* Pink color */
+    margin-top: 8px; /* Small space between the headline and instructions */
+    margin-bottom: 16px; /* Space between the instructions and the form fields */
+    text-align: center; /* Center the text */
+}
+
+.link {
+    color: #169595; /* Soft pink color to match your theme */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+    font-weight: 500; /* Slightly bolder for better visibility */
+}
+
+.link:hover {
+    color: #e48efa; /* Change to a complementary blue color on hover */
+    text-decoration: underline; /* Underline on hover to indicate interactivity */
+}
+
+
+
 .creatSuccess {
     background-color: rgba(240, 185, 185, 0.2); 
     display: flex;
